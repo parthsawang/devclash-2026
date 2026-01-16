@@ -224,7 +224,7 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-12 relative">
           <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} className="flex-shrink-0 flex items-center gap-4 group">
             <div className="relative">
-              <img src="devkraft1.png" alt="DevKraft Logo" className="h-10 md:h-12 object-contain" />
+              <img src="/logo/devkraft1.png" alt="DevKraft Logo" className="h-10 md:h-12 object-contain" />
               <motion.div animate={{ opacity: [0.3, 0.6, 0.3] }} transition={{ repeat: Infinity, duration: 2 }} className="absolute -inset-2 bg-stranger-red/5 blur-xl pointer-events-none" />
             </div>
           </motion.div>
@@ -401,7 +401,7 @@ const EventCards = () => (
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="bg-black/60 border border-zinc-800 p-6 rounded-md text-center">
           <h4 className="text-stranger-red font-serif uppercase tracking-widest mb-3">EVENT LOCATION</h4>
           <a href="https://maps.app.goo.gl/YzoSWiKqfxcuacnEA" target="_blank" rel="noreferrer" className="block mb-3">
-            <img src="image.png" alt="Event Location Map" className="mx-auto w-full max-w-sm rounded-md shadow-lg object-cover" />
+            <img src="/map/image.png" alt="Event Location Map" className="mx-auto w-full max-w-sm rounded-md shadow-lg object-cover" />
           </a>
           <a href="https://maps.app.goo.gl/YzoSWiKqfxcuacnEA" target="_blank" rel="noreferrer" className="text-zinc-300 underline hover:text-white">Open in Maps</a>
         </motion.div>
@@ -412,10 +412,10 @@ const EventCards = () => (
 
 const Tracks = () => {
   const trackImages = [
-    './tracker1.jpg', // Web/App Dev
-    './tracker2.jpg', // AI/ML
-    './tracker3.jpg', // Cybersecurity
-    './tracker4.jpg', // IoT/Cloud
+    '/images/tracker1.jpg', // Web/App Dev
+    '/images/tracker2.jpg', // AI/ML
+    '/images/tracker 3.jpg', // Cybersecurity
+    '/images/tracker4.jpg', // IoT/Cloud
   ];
 
   return (
@@ -573,7 +573,7 @@ const Footer = () => (
       
       {/* DevKraft logo centered above the background images */}
       <motion.div initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} className="relative z-10 mb-6">
-        <img src="devkraft1.png" alt="DevKraft Logo" className="h-12 md:h-16 mx-auto object-contain" />
+        <img src="/logo/devkraft1.png" alt="DevKraft Logo" className="h-12 md:h-16 mx-auto object-contain" />
         <div className="w-full h-[1px] bg-stranger-red/40 mt-2" />
       </motion.div>
        
