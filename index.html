@@ -67,6 +67,7 @@
         filter: drop-shadow(0 0 2px #e71d36) 
                 drop-shadow(0 0 10px #8b0000) 
                 drop-shadow(0 0 20px rgba(231, 29, 54, 0.2));
+        will-change: filter;
       }
 
       .stranger-title:hover {
@@ -164,9 +165,73 @@
         box-shadow: inset 0 0 100px rgba(0,0,0,1);
       }
 
-      ::selection {
-        background: #e71d36;
-        color: white;
+      /* Title Effect for consistent styling */
+      .title-effect {
+        font-family: 'ITC Benguiat', serif;
+        text-transform: uppercase;
+        letter-spacing: -0.02em;
+        line-height: 0.9;
+        color: transparent;
+        -webkit-text-stroke: 1.5px #e71d36;
+        position: relative;
+        display: inline-block;
+        transition: all 0.3s ease;
+        filter: drop-shadow(0 0 2px #e71d36) drop-shadow(0 0 10px #8b0000) drop-shadow(0 0 20px rgba(231, 29, 54, 0.2));
+        will-change: filter;
+        animation: authentic-flicker 6s infinite;
+      }
+
+      .title-effect::before {
+        content: attr(data-text);
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        -webkit-text-stroke: 0;
+        color: rgba(231, 29, 54, 0.15);
+        filter: blur(15px);
+      }
+
+      /* Snow Effect */
+      .snow {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 10;
+        overflow: hidden;
+      }
+
+      .snowflake {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: 50%;
+        animation: snowfall linear infinite;
+        box-shadow: 0 0 2px rgba(255, 255, 255, 0.5);
+        transform: translateY(-100vh);
+      }
+
+      @keyframes snowfall {
+        0% {
+          transform: translateY(-100vh) rotate(0deg);
+          opacity: 0;
+        }
+        10% {
+          opacity: 1;
+        }
+        90% {
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(100vh) rotate(360deg);
+          opacity: 0;
+        }
       }
     </style>
     <script type="importmap">
@@ -187,6 +252,22 @@
     <div id="root"></div>
     <div class="tv-static"></div>
     <div class="scanline"></div>
+    <script>
+      function createSnowflakes() {
+        const snow = document.createElement('div');
+        snow.className = 'snow';
+        document.body.appendChild(snow);
+        for (let i = 0; i < 50; i++) {
+          const snowflake = document.createElement('div');
+          snowflake.className = 'snowflake';
+          snowflake.style.left = Math.random() * 100 + '%';
+          snowflake.style.animationDelay = Math.random() * 10 + 's';
+          snowflake.style.animationDuration = (Math.random() * 10 + 10) + 's';
+          snow.appendChild(snowflake);
+        }
+      }
+      createSnowflakes();
+    </script>
   <script type="module" src="/index.tsx"></script>
 </body>
 </html>
