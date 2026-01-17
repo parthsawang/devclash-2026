@@ -388,17 +388,17 @@ const EventCards = () => (
         <h3 className="text-3xl md:text-4xl font-serif text-white font-bold">Event Details</h3>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="bg-black/60 border border-zinc-800 p-6 rounded-md text-center">
+        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} whileHover={{ scale: 1.05 }} className="bg-black/60 border border-zinc-800 p-6 rounded-md text-center cursor-pointer">
           <h4 className="text-stranger-red font-serif uppercase tracking-widest mb-3">ABOUT EVENT</h4>
           <p className="text-zinc-300 text-sm leading-relaxed">Get ready for an exhilarating hackathon experience at DEVCLASH. Our event is a celebration of creativity, coding prowess and teamwork. Join us from 5 Apr to 6 Apr for an unforgettable journey. Explore the world of technology, showcase your skills and vie for incredible prizes. Let's innovate, collaborate and create something extraordinary!</p>
         </motion.div>
 
-        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }} className="bg-black/60 border border-zinc-800 p-6 rounded-md text-center">
+        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }} whileHover={{ scale: 1.05 }} className="bg-black/60 border border-zinc-800 p-6 rounded-md text-center cursor-pointer">
           <h4 className="text-stranger-red font-serif uppercase tracking-widest mb-3">EVENT TIMING</h4>
           <p className="text-zinc-300 text-sm leading-relaxed">From Feb 2026 - Feb 2026<br/>9:00 AM onwards</p>
         </motion.div>
 
-        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="bg-black/60 border border-zinc-800 p-6 rounded-md text-center">
+        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} whileHover={{ scale: 1.05 }} className="bg-black/60 border border-zinc-800 p-6 rounded-md text-center cursor-pointer">
           <h4 className="text-stranger-red font-serif uppercase tracking-widest mb-3">EVENT LOCATION</h4>
           <a href="https://maps.app.goo.gl/YzoSWiKqfxcuacnEA" target="_blank" rel="noreferrer" className="block mb-3">
             <img src="/map/image.png" alt="Event Location Map" className="mx-auto w-full max-w-sm rounded-md shadow-lg object-cover" />
