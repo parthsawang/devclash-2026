@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence, useSpring } from 'framer-motion';
-import { Terminal, Brain, Shield, Heart, ChevronDown, Menu, X, ExternalLink, Clock, Radio, Facebook, Instagram, Twitter, Linkedin, Phone } from 'lucide-react';
+import { Terminal, Brain, Shield, Heart, ChevronDown, Menu, X, ExternalLink, Clock, Radio, Facebook, Instagram, Twitter, Linkedin, Phone, Microscope, BookOpen, Home, Castle } from 'lucide-react';
 import { NAV_LINKS, TRACKS} from './constants';
 
 
@@ -38,10 +38,11 @@ const FlipCard: React.FC<{
       <motion.div
         initial={false}
         animate={{ rotateY: isFlipped ? 180 : 0 }}
-        transition={{ duration: 0.6, type: "spring", stiffness: 100, damping: 15 }}
+        transition={{ duration: 0.6, type: "spring", stiffness: 100, damping: 20 }}
         style={{ 
           transformStyle: 'preserve-3d',
-          transformOrigin: 'center center'
+          transformOrigin: 'center center',
+          willChange: 'transform'
         }}
         className="w-full h-full"
       >
@@ -56,7 +57,7 @@ const FlipCard: React.FC<{
               alt="tracker" 
               className="w-full h-full object-cover"
               animate={{ scale: isHovering ? 1.1 : 1 }}
-              transition={{ duration: 0.4, type: "spring", stiffness: 100, damping: 15 }}
+              transition={{ duration: 0.4, type: "spring", stiffness: 100, damping: 20 }}
             />
           ) : (
             children
@@ -69,7 +70,7 @@ const FlipCard: React.FC<{
           style={{ backfaceVisibility: 'hidden', rotateY: 180 }}
           className="absolute w-full h-full border border-stranger-red bg-black/80 backdrop-blur-xl p-8 flex flex-col items-center justify-center text-center rounded-md"
         >
-          {backTitle && <h3 className="text-2xl font-bold text-stranger-red mb-4 font-serif uppercase">{backTitle}</h3>}
+          {backTitle && <h3 className="title-effect text-2xl mb-4" data-text={backTitle}>{backTitle}</h3>}
           {backContent && <p className="text-zinc-300 text-sm leading-relaxed font-mono">{backContent}</p>}
         </motion.div>
       </motion.div>
@@ -85,7 +86,7 @@ const SectionTitle: React.FC<{ children: React.ReactNode; subtitle?: boolean; up
       initial={{ opacity: 0, scale: 0.95 }}
       whileInView={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.8 }}
-      className={`text-4xl md:text-6xl font-stranger stranger-title animate-authentic-flicker tracking-tighter ${upsideDown ? 'grayscale-[0.3] contrast-[1.1]' : ''}`}
+      className={`title-effect text-4xl md:text-6xl tracking-tighter ${upsideDown ? 'grayscale-[0.3] contrast-[1.1]' : ''}`}
       data-text={children}
     >
       {children}
@@ -265,7 +266,7 @@ const Navbar = () => {
             <div className="absolute inset-0 opacity-10 pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
             <button onClick={() => setIsOpen(false)} className="absolute top-10 right-10 text-stranger-red border border-stranger-red/30 p-2"><X size={32}/></button>
             {NAV_LINKS.map((link, idx) => (
-              <motion.a key={link.name} href={link.href} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 * idx }} className="text-4xl text-zinc-300 hover:text-stranger-red font-stranger uppercase tracking-[0.2em] relative group" onClick={() => setIsOpen(false)}>
+              <motion.a key={link.name} href={link.href} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 * idx }} className={`${link.name === 'Problem Statements' ? 'text-3xl' : 'text-4xl'} text-zinc-300 hover:text-stranger-red font-stranger uppercase tracking-[0.15em] relative group`} onClick={() => setIsOpen(false)}>
                 <span className="relative z-10">{link.name}</span>
                 <div className="absolute -left-8 top-1/2 -translate-y-1/2 w-4 h-4 bg-stranger-red scale-0 group-hover:scale-100 transition-transform rounded-full blur-[2px]" />
               </motion.a>
@@ -296,7 +297,7 @@ const Hero = () => {
       </div>
       
       <motion.div 
-        style={{ y: contentY, opacity }}
+        style={{ y: contentY, opacity, willChange: 'transform, opacity' }}
         className=" z-10 text-center px-4 max-w-6xl pt-200 mx-auto"
       >
         {/* Top date removed as requested */}
@@ -310,13 +311,13 @@ const Hero = () => {
           >
             <div className="w-full h-[2px] bg-stranger-red shadow-[0_0_15px_#E71D36] opacity-80 mb-1" />
             <div className="flex items-center justify-center -mb-4 pb-4 md:pb-0">
-              <span className="font-stranger text-7xl md:text-[9rem] stranger-title animate-authentic-flicker leading-none" data-text="D">D</span>
-              <span className="font-stranger text-5xl md:text-[7.5rem] stranger-title animate-authentic-flicker leading-none" data-text="EVCLAS">EVCLAS</span>
-              <span className="font-stranger text-7xl md:text-[9rem] stranger-title animate-authentic-flicker leading-none" data-text="H">H</span>
+              <span className="title-effect text-7xl md:text-[9rem] leading-none" data-text="D">D</span>
+              <span className="title-effect text-5xl md:text-[7.5rem] leading-none" data-text="EVCLAS">EVCLAS</span>
+              <span className="title-effect text-7xl md:text-[9rem] leading-none" data-text="H">H</span>
             </div>
             <div className="flex items-center justify-center gap-4 w-full">
                <div className="flex-1 h-[2px] bg-stranger-red shadow-[0_0_15px_#E71D36] opacity-60" />
-               <span className="font-stranger text-4l md:text-[2rem] stranger-title animate-authentic-flicker leading-none tracking-widest px-4" data-text="UPSIDE">Pune's Biggest Tech Clash</span>
+               <span className="title-effect text-4l md:text-[2rem] leading-none tracking-widest px-4" data-text="Pune's Biggest Tech Clash">Pune's Biggest Tech Clash</span>
                <div className="flex-1 h-[2px] bg-stranger-red shadow-[0_0_15px_#E71D36] opacity-60" />
             </div>
           </motion.div>
@@ -384,21 +385,21 @@ const EventCards = () => (
   <section id="event-details" className="py-16 relative">
     <div className="max-w-5xl mx-auto px-6">
       <div className="text-center mb-8">
-        <h3 className="text-3xl md:text-4xl font-serif text-white font-bold">Event Details</h3>
+        <h3 className="title-effect text-3xl md:text-4xl" data-text="Event Details">Event Details</h3>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} whileHover={{ scale: 1.05 }} className="bg-black/60 border border-zinc-800 p-6 rounded-md text-center cursor-pointer">
-          <h4 className="text-stranger-red font-serif uppercase tracking-widest mb-3">ABOUT EVENT</h4>
+          <h4 className="title-effect text-xl mb-3" data-text="ABOUT EVENT">ABOUT EVENT</h4>
           <p className="text-zinc-300 text-sm leading-relaxed">Get ready for an exhilarating hackathon experience at DEVCLASH. Our event is a celebration of creativity, coding prowess and teamwork. Join us from 5 Apr to 6 Apr for an unforgettable journey. Explore the world of technology, showcase your skills and vie for incredible prizes. Let's innovate, collaborate and create something extraordinary!</p>
         </motion.div>
 
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }} whileHover={{ scale: 1.05 }} className="bg-black/60 border border-zinc-800 p-6 rounded-md text-center cursor-pointer">
-          <h4 className="text-stranger-red font-serif uppercase tracking-widest mb-3">EVENT TIMING</h4>
+          <h4 className="title-effect text-xl mb-3" data-text="EVENT TIMING">EVENT TIMING</h4>
           <p className="text-zinc-300 text-sm leading-relaxed">From Feb 2026 - Feb 2026<br/>9:00 AM onwards</p>
         </motion.div>
 
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} whileHover={{ scale: 1.05 }} className="bg-black/60 border border-zinc-800 p-6 rounded-md text-center cursor-pointer">
-          <h4 className="text-stranger-red font-serif uppercase tracking-widest mb-3">EVENT LOCATION</h4>
+          <h4 className="title-effect text-xl mb-3" data-text="EVENT LOCATION">EVENT LOCATION</h4>
           <a href="https://maps.app.goo.gl/YzoSWiKqfxcuacnEA" target="_blank" rel="noreferrer" className="block mb-3">
             <img src="/map/image.png" alt="Event Location Map" className="mx-auto w-full max-w-sm rounded-md shadow-lg object-cover" />
           </a>
@@ -410,11 +411,19 @@ const EventCards = () => (
 );
 
 const Tracks = () => {
+<<<<<<< HEAD
   const trackImages = [
     '/images/tracker1.jpg', // Web/App Dev
     '/images/tracker2.jpg', // AI/ML
     '/images/tracker3.jpg', // Cybersecurity
     '/images/tracker4.jpg', // IoT/Cloud
+=======
+  const trackIcons = [
+    <Microscope size={80} className="text-stranger-red" />, // Hawkins Lab
+    <BookOpen size={80} className="text-stranger-red" />, // Central Library
+    <Home size={80} className="text-stranger-red" />, // Mike's House
+    <Castle size={80} className="text-stranger-red" />, // Castle Byers
+>>>>>>> fc5fa4a111070d5b2e03045f526e76fe2f920f76
   ];
 
   return (
@@ -431,10 +440,14 @@ const Tracks = () => {
               className="w-full"
             >
               <FlipCard
-                frontImage={trackImages[index]}
-                backTitle={track.title}
+                backTitle={track.trackName}
                 backContent={track.description}
-              />
+              >
+                <div className="flex flex-col items-center justify-center h-full">
+                  {trackIcons[index]}
+                  <h3 className="title-effect text-2xl" data-text={track.title}>{track.title}</h3>
+                </div>
+              </FlipCard>
             </motion.div>
           ))}
         </div>
@@ -514,7 +527,7 @@ const Prizes = () => (
           >
             <div className="trophy-icon mb-3 text-3xl">🏆</div>
             <p className="text-red-400/60 text-[9px] sm:text-xs uppercase tracking-widest mb-2 font-mono">Base 1st</p>
-            <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-red-400 mb-3 font-serif uppercase tracking-widest neon-red">The Champion</h3>
+            <h3 className="title-effect text-lg sm:text-xl md:text-2xl mb-3" data-text="The Champion">The Champion</h3>
             <p className="text-2xl sm:text-3xl md:text-4xl font-black text-red-500 mb-3 sm:mb-4 neon-red">₹5,000</p>
             <p className="text-red-400/50 text-[8px] sm:text-[10px] uppercase tracking-widest font-mono">Grand Prize First</p>
           </motion.div>
@@ -538,7 +551,7 @@ const Prizes = () => (
           >
             <div className="medal-icon mb-3 text-3xl">🥈</div>
             <p className="text-cyan-400/60 text-[9px] sm:text-xs uppercase tracking-widest mb-2 font-mono">Base 2nd</p>
-            <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-cyan-300 mb-3 font-serif uppercase tracking-widest neon-cyan">Runner Up</h3>
+            <h3 className="title-effect text-lg sm:text-xl md:text-2xl mb-3" data-text="Runner Up">Runner Up</h3>
             <p className="text-2xl sm:text-3xl md:text-4xl font-black text-cyan-400 mb-3 sm:mb-4 neon-cyan">₹3,000</p>
             <p className="text-cyan-400/50 text-[8px] sm:text-[10px] uppercase tracking-widest font-mono">Grand Prize Second</p>
           </div>
@@ -555,7 +568,7 @@ const Prizes = () => (
           >
             <div className="medal-icon mb-3 text-3xl">🏅</div>
             <p className="text-cyan-400/60 text-[9px] sm:text-xs uppercase tracking-widest mb-2 font-mono">Base 3rd</p>
-            <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-cyan-300 mb-3 font-serif uppercase tracking-widest neon-cyan">2nd Runner Up</h3>
+            <h3 className="title-effect text-lg sm:text-xl md:text-2xl mb-3" data-text="2nd Runner Up">2nd Runner Up</h3>
             <p className="text-2xl sm:text-3xl md:text-4xl font-black text-cyan-400 mb-3 sm:mb-4 neon-cyan">₹1,000</p>
             <p className="text-cyan-400/50 text-[8px] sm:text-[10px] uppercase tracking-widest font-mono">Grand Prize Third</p>
           </div>

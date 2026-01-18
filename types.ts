@@ -5,6 +5,7 @@ export interface FaqItem {
 
 export interface TrackItem {
   title: string;
+  trackName: string;
   description: string;
   icon: string;
 }

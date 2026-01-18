@@ -5,27 +5,32 @@ export const NAV_LINKS = [
   { name: 'Home', href: '#home' },
   { name: 'About Us', href: '#about' },
   { name: 'Tracks', href: '#tracks' },
+  { name: 'Problem Statements', href: 'problem-statements.html' },
   { name: 'Schedule', href: '#timeline' },
 ];
 
 export const TRACKS: TrackItem[] = [
   {
-    title: "EdTech",
+    title: "Hawkins Lab",
+    trackName: "Edutech",
     description: "EdTech through curiosity, experimentation, and communication. Encourages interactive learning, problem-solving, peer collaboration, and practical knowledge using digital tools instead of rote memorization. Like Dustin learning through questions and teamwork.",
     icon: "laptop"
   },
   {
-    title: "Eleven",
+    title: "Central Library",
+    trackName: "Fintech",
     description: "FinTech using intelligence and control to manage powerful systems. Applies data, AI, and algorithms to move money securely, detect fraud, enable digital payments, and empower users with smarter, faster financial access.",
     icon: "brain"
   },
   {
-    title: "Steve",
+    title: "Mike's House",
+    trackName: "Agriculture",
     description: "Agriculture through protection, responsibility, and hands-on effort. Nurtures and protects crops from threats, requiring constant care, timely action, resilience, and smart use of tools to sustain life and growth.",
     icon: "lock"
   },
   {
-    title: "Max",
+    title: "Castle Byers",
+    trackName: "Healthcare",
     description: "Healthcare through strength, recovery, and perseverance. Focuses on diagnosis, support, and rehabilitation—helping individuals regain stability, resilience, and well-being through timely care and compassionate intervention.",
     icon: "heart"
   }
