@@ -3,8 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence, useSpring } from 'framer-motion';
 import { Terminal, Brain, Shield, Heart, ChevronDown, Menu, X, ExternalLink, Clock, Radio, Facebook, Instagram, Twitter, Linkedin, Phone } from 'lucide-react';
 import { NAV_LINKS, TRACKS} from './constants';
-import { Chatbot } from './components/Chatbot';
-import { ImageGenerator } from './components/ImageGenerator';
+
 
 // --- Flip Card Component ---
 const FlipCard: React.FC<{ 
