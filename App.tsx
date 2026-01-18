@@ -414,7 +414,7 @@ const Tracks = () => {
   const trackImages = [
     '/images/tracker1.jpg', // Web/App Dev
     '/images/tracker2.jpg', // AI/ML
-    '/images/tracker 3.jpg', // Cybersecurity
+    '/images/tracker3.jpg', // Cybersecurity
     '/images/tracker4.jpg', // IoT/Cloud
   ];
 
