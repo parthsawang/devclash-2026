@@ -289,8 +289,7 @@ const Hero = () => {
       <div 
         className="fixed inset-0 z-0 bg-cover bg-center bg-no-repeat"
         style={{ 
-          backgroundImage: 'url("https://wallpapers.com/images/high/stranger-things-aesthetic-desktop-wpnc6ln8nkzhjss0.webp")'
-        }}
+          backgroundImage: 'url("https://static0.polygonimages.com/wordpress/wp-content/uploads/chorus/uploads/chorus_asset/file/23665717/upsidedown.jpg?q=50&fit=crop&w=1184&h=666&dpr=1.5")', }}
       >
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,black_80%)]" />
@@ -411,19 +410,11 @@ const EventCards = () => (
 );
 
 const Tracks = () => {
-<<<<<<< HEAD
-  const trackImages = [
-    '/images/tracker1.jpg', // Web/App Dev
-    '/images/tracker2.jpg', // AI/ML
-    '/images/tracker3.jpg', // Cybersecurity
-    '/images/tracker4.jpg', // IoT/Cloud
-=======
   const trackIcons = [
     <Microscope size={80} className="text-stranger-red" />, // Hawkins Lab
     <BookOpen size={80} className="text-stranger-red" />, // Central Library
     <Home size={80} className="text-stranger-red" />, // Mike's House
     <Castle size={80} className="text-stranger-red" />, // Castle Byers
->>>>>>> fc5fa4a111070d5b2e03045f526e76fe2f920f76
   ];
 
   return (
