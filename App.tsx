@@ -289,7 +289,7 @@ const Hero = () => {
       <div 
         className="fixed inset-0 z-0 bg-cover bg-center bg-no-repeat"
         style={{ 
-          backgroundImage: 'url("https://static0.polygonimages.com/wordpress/wp-content/uploads/chorus/uploads/chorus_asset/file/23665717/upsidedown.jpg?q=50&fit=crop&w=1184&h=666&dpr=1.5")', }}
+          backgroundImage: 'url("https://pbs.twimg.com/media/EUDwstJU8AEtTf1.jpg")', }}
       >
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,black_80%)]" />
