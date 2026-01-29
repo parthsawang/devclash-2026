@@ -235,7 +235,14 @@ const Navbar = () => {
                 <a
                   key={link.name}
                   href={link.href}
-                  onClick={() => setActiveLink(link.href)}
+                  onClick={(e) => {
+                    if (link.name === 'Problem Statements') {
+                      e.preventDefault();
+                      window.open('/problem-statements.html', '_blank');
+                    } else {
+                      setActiveLink(link.href);
+                    }
+                  }}
                   className={`relative font-serif text-[11px] font-bold tracking-[0.3em] uppercase transition-all duration-500 nav-link-glitch group
                     ${activeLink === link.href ? 'text-white' : 'text-zinc-500 hover:text-zinc-200'}
                   `}
@@ -266,7 +273,13 @@ const Navbar = () => {
             <div className="absolute inset-0 opacity-10 pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
             <button onClick={() => setIsOpen(false)} className="absolute top-10 right-10 text-stranger-red border border-stranger-red/30 p-2"><X size={32}/></button>
             {NAV_LINKS.map((link, idx) => (
-              <motion.a key={link.name} href={link.href} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 * idx }} className={`${link.name === 'Problem Statements' ? 'text-3xl' : 'text-4xl'} text-zinc-300 hover:text-stranger-red font-stranger uppercase tracking-[0.15em] relative group`} onClick={() => setIsOpen(false)}>
+              <motion.a key={link.name} href={link.href} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 * idx }} className={`${link.name === 'Problem Statements' ? 'text-3xl' : 'text-4xl'} text-zinc-300 hover:text-stranger-red font-stranger uppercase tracking-[0.15em] relative group`} onClick={(e) => {
+                if (link.name === 'Problem Statements') {
+                  e.preventDefault();
+                  window.open('/problem-statements.html', '_blank');
+                }
+                setIsOpen(false);
+              }}>
                 <span className="relative z-10">{link.name}</span>
                 <div className="absolute -left-8 top-1/2 -translate-y-1/2 w-4 h-4 bg-stranger-red scale-0 group-hover:scale-100 transition-transform rounded-full blur-[2px]" />
               </motion.a>
