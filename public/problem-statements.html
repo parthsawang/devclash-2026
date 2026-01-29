@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="logo/fevicon.png"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Problem Statements - DevClash 2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              stranger: {
+                red: '#E71D36',
+                neon: '#ff0000',
+                darkRed: '#8B0000',
+                dark: '#050505',
+                void: '#0a0a1a'
+              }
+            },
+            fontFamily: {
+              stranger: ['"ITC Benguiat"', 'bold serif with high x-height '],
+              serif: ['"ITC Benguiat"', 'serif'],
+              mono: ['"Share Tech Mono"', 'monospace'],
+            },
+          }
+        }
+      }
+    </script>
+    <link href="https://fonts.cdnfonts.com/css/itc-benguiat" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <style>
+      body {
+        background-color: #050505;
+        color: #e2e2e2;
+        font-family: 'ITC Benguiat', serif;
+        overflow-x: hidden;
+      }
+
+      /* Base dark overlay for the whole site */
+      body::after {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle at center, rgba(10, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.8) 100%);
+        z-index: -1;
+        pointer-events: none;
+      }
+
+      /* Enhanced Stranger Things Glow & Flicker */
+      .stranger-title {
+        text-transform: uppercase;
+        letter-spacing: -0.02em;
+        line-height: 0.9;
+        color: transparent;
+        -webkit-text-stroke: 1.5px #e71d36;
+        position: relative;
+        display: inline-block;
+        transition: all 0.3s ease;
+        filter: drop-shadow(0 0 2px #e71d36)
+                drop-shadow(0 0 10px #8b0000)
+                drop-shadow(0 0 20px rgba(231, 29, 54, 0.2));
+      }
+
+      .stranger-title:hover {
+        filter: drop-shadow(0 0 5px #ff0000)
+                drop-shadow(0 0 15px #e71d36)
+                drop-shadow(0 0 30px #ff0000);
+        animation: text-flicker-intense 0.15s infinite alternate;
+      }
+
+      .stranger-title::before {
+        content: attr(data-text);
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        -webkit-text-stroke: 0;
+        color: rgba(231, 29, 54, 0.15);
+        filter: blur(15px);
+      }
+
+      @keyframes text-flicker-intense {
+        0% { opacity: 0.8; transform: skewX(-0.5deg); }
+        100% { opacity: 1; transform: skewX(0.5deg); }
+      }
+
+      @keyframes authentic-flicker {
+        0%, 18%, 22%, 25%, 53%, 57%, 100% {
+          filter: drop-shadow(0 0 8px #e71d36) drop-shadow(0 0 20px #8B0000);
+          opacity: 1;
+        }
+        1%, 19%, 23%, 54%, 58% {
+          filter: drop-shadow(0 0 2px #e71d36);
+          opacity: 0.7;
+        }
+      }
+
+      .animate-authentic-flicker {
+        animation: authentic-flicker 6s infinite;
+      }
+
+      .scanline {
+        width: 100%;
+        height: 100px;
+        z-index: 45;
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(255, 255, 255, 0.03) 50%, rgba(0, 0, 0, 0) 100%);
+        position: fixed;
+        bottom: 100%;
+        pointer-events: none;
+        animation: scanline 6s linear infinite;
+      }
+
+      @keyframes scanline {
+        0% { bottom: 100%; }
+        100% { bottom: -100px; }
+      }
+
+      .tv-static {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url('https://grainy-gradients.vercel.app/noise.svg');
+        opacity: 0.05;
+        pointer-events: none;
+        z-index: 50;
+      }
+
+      .spores {
+        position: absolute;
+        inset: 0;
+        background-image: radial-gradient(circle, #fff 1px, transparent 1px);
+        background-size: 50px 50px;
+        opacity: 0;
+        transition: opacity 1.5s ease;
+        pointer-events: none;
+      }
+
+      .active-spores .spores {
+        opacity: 0.2;
+        animation: spores-float 30s linear infinite;
+      }
+
+      @keyframes spores-float {
+        from { background-position: 0 0; }
+        to { background-position: 150px 300px; }
+      }
+
+      .bg-upside-down {
+        background: radial-gradient(circle at center, #1a0b2e 0%, #050505 100%);
+        border-top: 2px solid rgba(231, 29, 54, 0.2);
+        border-bottom: 2px solid rgba(231, 29, 54, 0.2);
+        box-shadow: inset 0 0 100px rgba(0,0,0,1);
+      }
+
+      /* Title Effect for consistent styling */
+      .title-effect {
+        font-family: 'ITC Benguiat', serif;
+        text-transform: uppercase;
+        letter-spacing: -0.02em;
+        line-height: 0.9;
+        color: transparent;
+        -webkit-text-stroke: 1.5px #e71d36;
+        position: relative;
+        display: inline-block;
+        transition: all 0.3s ease;
+        filter: drop-shadow(0 0 2px #e71d36) drop-shadow(0 0 10px #8b0000) drop-shadow(0 0 20px rgba(231, 29, 54, 0.2));
+        will-change: filter;
+        animation: authentic-flicker 6s infinite;
+      }
+
+      .title-effect::before {
+        content: attr(data-text);
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        -webkit-text-stroke: 0;
+        color: rgba(231, 29, 54, 0.15);
+        filter: blur(15px);
+      }
+
+      /* Snow Effect */
+      .snow {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 10;
+        overflow: hidden;
+      }
+
+      .snowflake {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: 50%;
+        animation: snowfall linear infinite;
+        box-shadow: 0 0 2px rgba(255, 255, 255, 0.5);
+        transform: translateY(-100vh);
+      }
+
+      @keyframes snowfall {
+        0% {
+          transform: translateY(-100vh) rotate(0deg);
+          opacity: 0;
+        }
+        10% {
+          opacity: 1;
+        }
+        90% {
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(100vh) rotate(360deg);
+          opacity: 0;
+        }
+      }
+
+      ::selection {
+        background: #e71d36;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="tv-static"></div>
+    <div class="scanline"></div>
+
+    <!-- Simple Navbar -->
+    <nav class="sticky top-0 w-full z-50 bg-black/95 backdrop-blur-2xl border-b border-stranger-red/20 py-4">
+      <div class="max-w-7xl mx-auto px-6 lg:px-10">
+        <div class="flex items-center justify-between h-12 relative">
+          <div class="flex-shrink-0 flex items-center gap-4 group">
+            <div class="relative">
+              <img src="logo/devkraft1.png" alt="DevKraft Logo" class="h-10 md:h-12 object-contain" />
+              <div class="absolute -inset-2 bg-stranger-red/5 blur-xl pointer-events-none"></div>
+            </div>
+          </div>
+
+          <div class="hidden md:block">
+            <div class="flex items-center space-x-10">
+              <a href="/" class="font-serif text-[11px] font-bold tracking-[0.3em] uppercase transition-all duration-500 nav-link-glitch group text-zinc-500 hover:text-zinc-200">
+                <span class="relative z-10">Back to Home</span>
+              </a>
+              <a href="problem-statements.html" class="font-serif text-[11px] font-bold tracking-[0.3em] uppercase transition-all duration-500 nav-link-glitch group text-zinc-500 hover:text-zinc-200">
+                <span class="relative z-10">Problem</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="md:hidden flex items-center gap-4">
+            <a href="/" class="text-zinc-500 hover:text-zinc-200 font-serif text-[11px] font-bold tracking-[0.3em] uppercase transition-all duration-500 px-4 py-2 border border-stranger-red/20 rounded hover:bg-stranger-red/10">Home</a>
+            <a href="problem-statements.html" class="text-zinc-500 hover:text-zinc-200 font-serif text-[11px] font-bold tracking-[0.3em] uppercase transition-all duration-500 px-4 py-2 border border-stranger-red/20 rounded hover:bg-stranger-red/10">Problem</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Problem Statements Content -->
+    <section class="py-20 md:py-40 relative min-h-screen">
+      <div class="max-w-7xl mx-auto px-4 md:px-6">
+        <div class="text-center mb-16">
+          <h1 class="title-effect text-4xl md:text-6xl mb-4" data-text="Problem Statements">Problem Statements</h1>
+          <p class="text-zinc-300 text-lg font-serif italic">The Challenges Await - Enter the Void</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          <!-- Edutech -->
+          <div class="bg-black/60 border border-zinc-800/50 p-8 backdrop-blur-md rounded-md">
+            <h3 class="title-effect text-2xl mb-6" data-text="Edutech">Edutech</h3>
+            <ul class="space-y-4">
+              <li class="text-zinc-300 text-sm leading-relaxed font-mono p-4 bg-zinc-900/50 rounded border-l-2 border-stranger-red/50">
+                <span class="text-stranger-red font-bold mr-2">1.</span>
+                Develop an AI-powered learning platform that adapts to individual student learning styles and provides personalized feedback.
+              </li>
+              <li class="text-zinc-300 text-sm leading-relaxed font-mono p-4 bg-zinc-900/50 rounded border-l-2 border-stranger-red/50">
+                <span class="text-stranger-red font-bold mr-2">2.</span>
+                Create a virtual reality classroom environment for remote learning with interactive 3D models and collaborative tools.
+              </li>
+              <li class="text-zinc-300 text-sm leading-relaxed font-mono p-4 bg-zinc-900/50 rounded border-l-2 border-stranger-red/50">
+                <span class="text-stranger-red font-bold mr-2">3.</span>
+                Build a gamified education app that makes learning complex subjects like mathematics and science engaging for students.
+              </li>
+              <li class="text-zinc-300 text-sm leading-relaxed font-mono p-4 bg-zinc-900/50 rounded border-l-2 border-stranger-red/50">
+                <span class="text-stranger-red font-bold mr-2">4.</span>
+                Design a smart attendance and performance tracking system for schools using IoT devices and data analytics.
+              </li>
+            </ul>
+          </div>
+
+          <!-- Fintech -->
+          <div class="bg-black/60 border border-zinc-800/50 p-8 backdrop-blur-md rounded-md">
+            <h3 class="title-effect text-2xl mb-6" data-text="Fintech">Fintech</h3>
+            <ul class="space-y-4">
+              <li class="text-zinc-300 text-sm leading-relaxed font-mono p-4 bg-zinc-900/50 rounded border-l-2 border-stranger-red/50">
+                <span class="text-stranger-red font-bold mr-2">1.</span>
+                Create a secure peer-to-peer lending platform with blockchain-based smart contracts and instant verification.
+              </li>
+              <li class="text-zinc-300 text-sm leading-relaxed font-mono p-4 bg-zinc-900/50 rounded border-l-2 border-stranger-red/50">
+                <span class="text-stranger-red font-bold mr-2">2.</span>
+                Develop an AI-driven financial advisory chatbot that provides personalized investment recommendations.
+              </li>
+              <li class="text-zinc-300 text-sm leading-relaxed font-mono p-4 bg-zinc-900/50 rounded border-l-2 border-stranger-red/50">
+                <span class="text-stranger-red font-bold mr-2">3.</span>
+                Build a mobile app for micro-loans with voice-based authentication and biometric security features.
+              </li>
+              <li class="text-zinc-300 text-sm leading-relaxed font-mono p-4 bg-zinc-900/50 rounded border-l-2 border-stranger-red/50">
+                <span class="text-stranger-red font-bold mr-2">4.</span>
+                Design a cryptocurrency wallet with multi-signature support and decentralized exchange integration.
+              </li>
+            </ul>
+          </div>
+
+          <!-- Agriculture -->
+          <div class="bg-black/60 border border-zinc-800/50 p-8 backdrop-blur-md rounded-md">
+            <h3 class="title-effect text-2xl mb-6" data-text="Agriculture">Agriculture</h3>
+            <ul class="space-y-4">
+              <li class="text-zinc-300 text-sm leading-relaxed font-mono p-4 bg-zinc-900/50 rounded border-l-2 border-stranger-red/50">
+                <span class="text-stranger-red font-bold mr-2">1.</span>
+                Develop an IoT-based crop monitoring system that predicts disease outbreaks using sensor data and machine learning.
+              </li>
+              <li class="text-zinc-300 text-sm leading-relaxed font-mono p-4 bg-zinc-900/50 rounded border-l-2 border-stranger-red/50">
+                <span class="text-stranger-red font-bold mr-2">2.</span>
+                Create a mobile app for farmers to access real-time weather forecasts, market prices, and agricultural advice.
+              </li>
+              <li class="text-zinc-300 text-sm leading-relaxed font-mono p-4 bg-zinc-900/50 rounded border-l-2 border-stranger-red/50">
+                <span class="text-stranger-red font-bold mr-2">3.</span>
+                Build a drone-based irrigation system that optimizes water usage based on soil moisture and crop requirements.
+              </li>
+              <li class="text-zinc-300 text-sm leading-relaxed font-mono p-4 bg-zinc-900/50 rounded border-l-2 border-stranger-red/50">
+                <span class="text-stranger-red font-bold mr-2">4.</span>
+                Design a blockchain platform for transparent supply chain tracking from farm to consumer.
+              </li>
+            </ul>
+          </div>
+
+          <!-- Healthcare -->
+          <div class="bg-black/60 border border-zinc-800/50 p-8 backdrop-blur-md rounded-md">
+            <h3 class="title-effect text-2xl mb-6" data-text="Healthcare">Healthcare</h3>
+            <ul class="space-y-4">
+              <li class="text-zinc-300 text-sm leading-relaxed font-mono p-4 bg-zinc-900/50 rounded border-l-2 border-stranger-red/50">
+                <span class="text-stranger-red font-bold mr-2">1.</span>
+                Create an AI-powered diagnostic tool that analyzes medical images for early disease detection.
+              </li>
+              <li class="text-zinc-300 text-sm leading-relaxed font-mono p-4 bg-zinc-900/50 rounded border-l-2 border-stranger-red/50">
+                <span class="text-stranger-red font-bold mr-2">2.</span>
+                Develop a telemedicine platform with real-time translation and secure patient data management.
+              </li>
+              <li class="text-zinc-300 text-sm leading-relaxed font-mono p-4 bg-zinc-900/50 rounded border-l-2 border-stranger-red/50">
+                <span class="text-stranger-red font-bold mr-2">3.</span>
+                Build a wearable device that monitors vital signs and predicts health risks using predictive analytics.
+              </li>
+              <li class="text-zinc-300 text-sm leading-relaxed font-mono p-4 bg-zinc-900/50 rounded border-l-2 border-stranger-red/50">
+                <span class="text-stranger-red font-bold mr-2">4.</span>
+                Design a medication adherence app with smart reminders and integration with pharmacy systems.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      // Snow effect
+      function createSnowflakes() {
+        const snow = document.createElement('div');
+        snow.className = 'snow';
+        document.body.appendChild(snow);
+        for (let i = 0; i < 50; i++) {
+          const snowflake = document.createElement('div');
+          snowflake.className = 'snowflake';
+          snowflake.style.left = Math.random() * 100 + '%';
+          snowflake.style.animationDelay = Math.random() * 10 + 's';
+          snowflake.style.animationDuration = (Math.random() * 10 + 10) + 's';
+          snow.appendChild(snowflake);
+        }
+      }
+      createSnowflakes();
+    </script>
+  </body>
+</html>
