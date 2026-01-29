@@ -238,7 +238,7 @@ const Navbar = () => {
                   onClick={(e) => {
                     if (link.name === 'Problem Statements') {
                       e.preventDefault();
-                      window.open('/problem-statements.html', '_blank');
+                      window.open(import.meta.env.BASE_URL + 'problem-statements.html', '_blank');
                     } else {
                       setActiveLink(link.href);
                     }
@@ -276,7 +276,7 @@ const Navbar = () => {
               <motion.a key={link.name} href={link.href} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 * idx }} className={`${link.name === 'Problem Statements' ? 'text-3xl' : 'text-4xl'} text-zinc-300 hover:text-stranger-red font-stranger uppercase tracking-[0.15em] relative group`} onClick={(e) => {
                 if (link.name === 'Problem Statements') {
                   e.preventDefault();
-                  window.open('/problem-statements.html', '_blank');
+                  window.open(import.meta.env.BASE_URL + 'problem-statements.html', '_blank');
                 }
                 setIsOpen(false);
               }}>
