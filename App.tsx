@@ -169,7 +169,7 @@ const Countdown = () => {
     </div>
   );
 
-  const header = phase === 'before' ? 'Starts In' : phase === 'during' ? 'Ends In' : 'Event Ended';
+  const header = phase === 'before' ? 'Starts In' : phase === 'during' ? 'Starts In' : 'Event Ended';
 
   return (
     <div className="flex flex-col items-center justify-center my-6">
@@ -284,12 +284,12 @@ const Hero = () => {
   const opacity = useTransform(scrollY, [0, 500], [1, 0]);
 
   return (
-    <section id="home" className="pt-100 relative h-screen flex items-center justify-center overflow-hidden bg-black">
+    <section id="home" className="pt-50 relative h-screen flex items-center justify-center overflow-hidden bg-black">
       {/* User requested Hero Background - Now FIXED position to stay static */}
       <div 
         className="fixed inset-0 z-0 bg-cover bg-center bg-no-repeat"
         style={{ 
-          backgroundImage: 'url("https://static0.polygonimages.com/wordpress/wp-content/uploads/chorus/uploads/chorus_asset/file/23665717/upsidedown.jpg?q=50&fit=crop&w=1184&h=666&dpr=1.5")', }}
+          backgroundImage: 'url("https://pbs.twimg.com/media/EUDwstJU8AEtTf1.jpg")', }}
       >
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,black_80%)]" />
@@ -297,7 +297,7 @@ const Hero = () => {
       
       <motion.div 
         style={{ y: contentY, opacity, willChange: 'transform, opacity' }}
-        className=" z-10 text-center px-4 max-w-6xl pt-200 mx-auto"
+        className=" z-10 text-center px-4 max-w-6xl pt-100 mx-auto"
       >
         {/* Top date removed as requested */}
         
@@ -368,7 +368,7 @@ const GroupSectionContainer = ({ children }: { children: React.ReactNode }) => {
 };
 
 const About = () => (
-  <section id="about" className="py-28 relative">
+  <section id="about" className="py-16 relative">
     <div className="max-w-4xl mx-auto px-6">
       <SectionTitle subtitle>About Us</SectionTitle>
       <motion.div initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="bg-black/60 p-8 backdrop-blur-md border border-zinc-800/50 text-center">
@@ -381,7 +381,7 @@ const About = () => (
 );
 
 const EventCards = () => (
-  <section id="event-details" className="py-16 relative">
+  <section id="event-details" className="py-8 relative">
     <div className="max-w-5xl mx-auto px-6">
       <div className="text-center mb-8">
         <h3 className="title-effect text-3xl md:text-4xl" data-text="Event Details">Event Details</h3>
@@ -418,7 +418,7 @@ const Tracks = () => {
   ];
 
   return (
-    <section id="tracks" className="py-40 relative">
+    <section id="tracks" className="py-20 relative">
       <div className="max-w-7xl mx-auto px-6">
         <SectionTitle subtitle>The Missions</SectionTitle>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 justify-items-center">
@@ -448,7 +448,7 @@ const Tracks = () => {
 };
 
 const Prizes = () => (
-  <section id="prizes" className="py-40 relative">
+  <section id="prizes" className="py-20 relative">
     <style>{`
       @keyframes neon-glow-cyan {
         0%, 100% {
@@ -571,7 +571,7 @@ const Prizes = () => (
 
 
 const Footer = () => (
-  <footer className="bg-black text-white py-12 relative overflow-hidden">
+  <footer className="bg-black text-white py-8 relative overflow-hidden">
     <div className="max-w-7xl mx-auto px-6 flex flex-col items-center relative z-10 text-center">
       
       {/* DevKraft logo centered above the background images */}
@@ -589,6 +589,7 @@ const Footer = () => (
       {/* Social Icons */}
       <div className="flex gap-8 mb-8 text-stranger-red">
         <a href="https://www.instagram.com/devkraft.dpu/?hl=en" className="hover:text-white transition-colors duration-300"><Instagram size={28} /></a>
+        <a href="https://x.com/devkraftdpu" className="hover:text-white transition-colors duration-300"><Twitter size={28} /></a>
         <a href="https://www.linkedin.com/company/dev-kraft/posts/?feedView=all" className="hover:text-white transition-colors duration-300"><Linkedin size={28} /></a>
       </div>
 
@@ -602,7 +603,7 @@ const Footer = () => (
 );
 
 const Timeline = () => (
-  <section id="timeline" className="py-20 md:py-40 relative">
+  <section id="timeline" className="py-16 md:py-20 relative">
     <div className="max-w-7xl mx-auto px-6">                                                                                                                
       <SectionTitle subtitle>The Crawl</SectionTitle>
       
