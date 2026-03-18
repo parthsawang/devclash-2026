@@ -1,7 +1,7 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence, useSpring } from 'framer-motion';
-import { Terminal, Brain, Shield, Heart, ChevronDown, Menu, X, ExternalLink, Clock, Radio, Facebook, Instagram, Twitter, Linkedin, Phone, Microscope, BookOpen, Home, Castle } from 'lucide-react';
+import { Terminal, Brain, Shield, Heart, ChevronDown, Menu, X, ExternalLink, Clock, Radio, Facebook, Instagram, Twitter, Linkedin, Phone, Microscope, BookOpen, Home, Castle, Volume2, VolumeX } from 'lucide-react';
 import { NAV_LINKS, TRACKS} from './constants';
 
 
@@ -235,7 +235,14 @@ const Navbar = () => {
                 <a
                   key={link.name}
                   href={link.href}
-                  onClick={() => setActiveLink(link.href)}
+                  onClick={(e) => {
+                    if (link.name === 'Problem Statements') {
+                      e.preventDefault();
+                      window.open(import.meta.env.BASE_URL + 'problem-statements.html', '_blank');
+                    } else {
+                      setActiveLink(link.href);
+                    }
+                  }}
                   className={`relative font-serif text-[11px] font-bold tracking-[0.3em] uppercase transition-all duration-500 nav-link-glitch group
                     ${activeLink === link.href ? 'text-white' : 'text-zinc-500 hover:text-zinc-200'}
                   `}
@@ -266,7 +273,13 @@ const Navbar = () => {
             <div className="absolute inset-0 opacity-10 pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
             <button onClick={() => setIsOpen(false)} className="absolute top-10 right-10 text-stranger-red border border-stranger-red/30 p-2"><X size={32}/></button>
             {NAV_LINKS.map((link, idx) => (
-              <motion.a key={link.name} href={link.href} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 * idx }} className={`${link.name === 'Problem Statements' ? 'text-3xl' : 'text-4xl'} text-zinc-300 hover:text-stranger-red font-stranger uppercase tracking-[0.15em] relative group`} onClick={() => setIsOpen(false)}>
+              <motion.a key={link.name} href={link.href} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 * idx }} className={`${link.name === 'Problem Statements' ? 'text-3xl' : 'text-4xl'} text-zinc-300 hover:text-stranger-red font-stranger uppercase tracking-[0.15em] relative group`} onClick={(e) => {
+                if (link.name === 'Problem Statements') {
+                  e.preventDefault();
+                  window.open(import.meta.env.BASE_URL + 'problem-statements.html', '_blank');
+                }
+                setIsOpen(false);
+              }}>
                 <span className="relative z-10">{link.name}</span>
                 <div className="absolute -left-8 top-1/2 -translate-y-1/2 w-4 h-4 bg-stranger-red scale-0 group-hover:scale-100 transition-transform rounded-full blur-[2px]" />
               </motion.a>
@@ -706,9 +719,74 @@ export default function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Background audio control
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const [muted, setMuted] = useState<boolean>(() => localStorage.getItem('bg-muted') === 'true');
+  const [audioStarted, setAudioStarted] = useState(false);
+
+  // Initialize audio on first user interaction
+  useEffect(() => {
+    const initializeAudio = () => {
+      const audio = audioRef.current;
+      if (audio && !audioStarted) {
+        audio.volume = 0.3;
+        audio.muted = muted;
+        if (!muted) {
+          const playPromise = audio.play();
+          if (playPromise && playPromise.catch) {
+            playPromise.catch((err) => console.log('Audio play failed:', err));
+          }
+        }
+        setAudioStarted(true);
+      }
+    };
+
+    // Trigger on any user interaction
+    document.addEventListener('click', initializeAudio, { once: true });
+    document.addEventListener('touchstart', initializeAudio, { once: true });
+    document.addEventListener('keydown', initializeAudio, { once: true });
+
+    return () => {
+      document.removeEventListener('click', initializeAudio);
+      document.removeEventListener('touchstart', initializeAudio);
+      document.removeEventListener('keydown', initializeAudio);
+    };
+  }, [muted, audioStarted]);
+
+  // Handle mute/unmute
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    audio.muted = muted;
+    if (!muted && audioStarted) {
+      const playPromise = audio.play();
+      if (playPromise && playPromise.catch) {
+        playPromise.catch((err) => console.log('Audio play failed:', err));
+      }
+    }
+    localStorage.setItem('bg-muted', muted ? 'true' : 'false');
+  }, [muted, audioStarted]);
+
   return (
     <div className="min-h-screen bg-black text-zinc-100 overflow-x-hidden">
       <Navbar />
+      {/* Background audio element (hidden) */}
+      <audio 
+        ref={audioRef} 
+        src={import.meta.env.BASE_URL + 'audio/music.mp3'} 
+        loop 
+        preload="auto"
+        crossOrigin="anonymous"
+      />
+
+      {/* Speaker button: fixed bottom-right */}
+      <button
+        aria-label={muted ? 'Unmute background music' : 'Mute background music'}
+        onClick={() => setMuted(prev => !prev)}
+        className={`fixed z-50 bottom-6 right-6 w-14 h-14 rounded-full flex items-center justify-center shadow-lg transition-all focus:outline-none focus:ring-2 focus:ring-stranger-red/50 ${muted ? 'bg-white border-2 border-stranger-red text-stranger-red' : 'bg-stranger-red text-white'}`}
+      >
+        {muted ? <VolumeX size={20} /> : <Volume2 size={20} />}
+      </button>
       <main>
         <Hero />
         <GroupSectionContainer>
