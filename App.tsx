@@ -362,15 +362,17 @@ const Hero = () => {
         </motion.div>
 
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1 }} className="flex flex-col gap-8 justify-center items-center mt-12">
-          <a
+          <motion.a
             href="https://unstop.com/hackathons/devclash-drdypatil-institute-of-technologypimpripune-411018-1670680"
             target="_blank"
             rel="noopener noreferrer"
-            className="group relative px-12 py-5 bg-black border-2 border-stranger-red text-stranger-red font-black font-mono tracking-[0.4em] hover:bg-stranger-red hover:text-black transition-all duration-500 uppercase overflow-hidden shadow-[0_0_25px_rgba(231,29,54,0.4)]"
+            whileHover={{ scale: 1.05 }}
+            className="group relative px-12 py-5 bg-black border-2 border-stranger-red text-stranger-red font-black font-mono tracking-[0.4em] transition-all duration-300 uppercase overflow-hidden shadow-[0_0_25px_rgba(231,29,54,0.4)] hover:shadow-[0_0_40px_rgba(231,29,54,0.8),inset_0_0_20px_rgba(231,29,54,0.2)] active:scale-95"
           >
             <span className="relative z-10">Enter The Upside Down</span>
-            <div className="absolute inset-0 bg-stranger-red transform translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
-          </a>
+            <div className="absolute inset-0 bg-gradient-to-r from-stranger-red/0 via-stranger-red/20 to-stranger-red/0 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300 pointer-events-none"></div>
+            <div className="absolute -inset-1 bg-stranger-red/0 group-hover:bg-stranger-red/10 blur-xl transition-all duration-300 -z-10 rounded-sm"></div>
+          </motion.a>
         </motion.div>
       </motion.div>
     </section>
@@ -421,7 +423,7 @@ const EventCards = () => (
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} whileHover={{ scale: 1.05 }} className="bg-black/60 border border-zinc-800 p-6 rounded-md text-center cursor-pointer">
           <h4 className="title-effect text-xl mb-3" data-text="ABOUT EVENT">ABOUT EVENT</h4>
-          <p className="text-zinc-300 text-sm leading-relaxed">Get ready for an exhilarating hackathon experience at DEVCLASH. Our event is a celebration of creativity, coding prowess and teamwork. Join us from 5 Apr to 6 Apr for an unforgettable journey. Explore the world of technology, showcase your skills and vie for incredible prizes. Let's innovate, collaborate and create something extraordinary!</p>
+          <p className="text-zinc-300 text-sm leading-relaxed">Get ready for an exhilarating hackathon experience at DEVCLASH. Our event is a celebration of creativity, coding prowess and teamwork. Join us from 11 Apr to 12 Apr for an unforgettable journey. Explore the world of technology, showcase your skills and vie for incredible prizes. Let's innovate, collaborate and create something extraordinary!</p>
         </motion.div>
 
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }} whileHover={{ scale: 1.05 }} className="bg-black/60 border border-zinc-800 p-6 rounded-md text-center cursor-pointer">
@@ -544,7 +546,7 @@ const Footer = () => (
       {/* Social Icons */}
       <div className="flex gap-8 mb-8 text-stranger-red">
         <a href="https://www.instagram.com/devkraft.dpu/?hl=en" className="hover:text-white transition-colors duration-300"><Instagram size={28} /></a>
-        <a href="https://x.com/devkraftdpu" className="hover:text-white transition-colors duration-300"><Twitter size={28} /></a>
+        <a href="https://x.com/devkraftclub" className="hover:text-white transition-colors duration-300"><Twitter size={28} /></a>
         <a href="https://www.linkedin.com/company/dev-kraft/posts/?feedView=all" className="hover:text-white transition-colors duration-300"><Linkedin size={28} /></a>
       </div>
 
