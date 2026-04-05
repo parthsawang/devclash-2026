@@ -363,7 +363,7 @@ const Hero = () => {
 
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1 }} className="flex flex-col gap-8 justify-center items-center mt-12">
           <motion.a
-            href="https://unstop.com/hackathons/devclash-drdypatil-institute-of-technologypimpripune-411018-1670680"
+            href="https://unstop.com/o/0qBThVD?utm_medium=Share&utm_source=tcwrevub17232&utm_campaign=Online_coding_challengenp"
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ scale: 1.05 }}
