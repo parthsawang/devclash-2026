@@ -1,8 +1,8 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence, useSpring } from 'framer-motion';
-import { Terminal, Brain, Shield, Heart, ChevronDown, Menu, X, ExternalLink, Clock, Radio, Facebook, Instagram, Twitter, Linkedin, Phone, Microscope, BookOpen, Home, Castle, Volume2, VolumeX } from 'lucide-react';
-import { NAV_LINKS, TRACKS} from './constants';
+import { Terminal, Brain, Shield, Heart, Menu, X, ExternalLink, Clock, Radio, Facebook, Instagram, Twitter, Linkedin, Phone, Microscope, BookOpen, Home, Castle, Volume2, VolumeX } from 'lucide-react';
+import { NAV_LINKS } from './constants';
 
 
 // --- Flip Card Component ---
@@ -159,25 +159,35 @@ const Countdown = () => {
   }, []);
 
   const TimeUnit: React.FC<{ value: number; label: string }> = ({ value, label }) => (
-    <div className="flex flex-col items-center mx-3 md:mx-5">
-      <div className="bg-black/80 border-2 border-stranger-red/30 rounded-none p-4 md:p-6 min-w-[80px] md:min-w-[110px] backdrop-blur-xl shadow-[inset_0_0_15px_rgba(231,29,54,0.1)]">
-        <span className="text-4xl md:text-6xl font-mono text-stranger-red font-black tracking-tighter">
+    <div className="flex flex-col items-center mx-2 md:mx-4">
+      <div className="bg-black/90 border border-red-500/20 rounded-3xl px-5 py-4 md:px-6 md:py-5 min-w-[80px] md:min-w-[110px] shadow-[inset_0_0_25px_rgba(239,68,68,0.18),0_0_25px_rgba(231,29,54,0.2)]">
+        <span
+          style={{ textShadow: '0 0 20px rgba(239,68,68,0.8), 0 0 40px rgba(255,20,20,0.35)' }}
+          className="text-4xl md:text-6xl font-mono text-red-400 font-black tracking-[0.2em]"
+        >
           {value.toString().padStart(2, '0')}
         </span>
       </div>
-      <span className="text-zinc-500 font-mono text-[10px] md:text-xs mt-3 uppercase tracking-[0.3em] font-bold">{label}</span>
+      <span className="text-red-300 font-mono text-[10px] md:text-xs mt-3 uppercase tracking-[0.3em] font-bold">
+        {label}
+      </span>
     </div>
   );
 
-  const header = phase === 'before' ? 'Starts In' : phase === 'during' ? 'Starts In' : 'Event Ended';
+  const header = phase === 'before' ? 'Starts In' : phase === 'during' ? 'Ends In' : 'Event Ended';
 
   return (
-    <div className="flex flex-col items-center justify-center my-6">
-      <div className="text-center text-xs md:text-sm text-zinc-300 uppercase mb-3 font-mono tracking-widest">{header}</div>
-      <div className="flex justify-center flex-wrap">
+    <div className="flex flex-col items-center justify-center my-8">
+      <div className="text-center text-xs md:text-sm text-red-200 uppercase mb-4 font-mono tracking-[0.4em]">
+        {header}
+      </div>
+      <div className="relative inline-flex flex-wrap justify-center gap-3 rounded-[2rem] border border-red-500/20 bg-black/60 px-4 py-4 shadow-[0_0_60px_rgba(239,68,68,0.15)] backdrop-blur-xl">
         <TimeUnit value={timeLeft.days} label="Days" />
+        <div className="hidden md:flex items-center text-red-500 text-3xl font-black px-2">:</div>
         <TimeUnit value={timeLeft.hours} label="Hours" />
+        <div className="hidden md:flex items-center text-red-500 text-3xl font-black px-2">:</div>
         <TimeUnit value={timeLeft.minutes} label="Minutes" />
+        <div className="hidden md:flex items-center text-red-500 text-3xl font-black px-2">:</div>
         <TimeUnit value={timeLeft.seconds} label="Seconds" />
       </div>
     </div>
@@ -295,9 +305,10 @@ const Hero = () => {
   const { scrollY } = useScroll();
   const contentY = useTransform(scrollY, [0, 500], [0, 100]);
   const opacity = useTransform(scrollY, [0, 500], [1, 0]);
+  const ballScrollY = useTransform(scrollY, [0, 500], [0, 14], { clamp: true });
 
   return (
-    <section id="home" className="pt-50 relative h-screen flex items-center justify-center overflow-hidden bg-black">
+    <section id="home" className="pt-50 relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-black">
       {/* User requested Hero Background - Now FIXED position to stay static */}
       <div 
         className="fixed inset-0 z-0 bg-cover bg-center bg-no-repeat"
@@ -343,16 +354,12 @@ const Hero = () => {
           <Countdown />
         </motion.div>
 
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1 }} className="flex flex-col sm:flex-row gap-8 justify-center items-center mt-12">
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1 }} className="flex flex-col gap-8 justify-center items-center mt-12">
           <a href="#register" className="group relative px-12 py-5 bg-black border-2 border-stranger-red text-stranger-red font-black font-mono tracking-[0.4em] hover:bg-stranger-red hover:text-black transition-all duration-500 uppercase overflow-hidden shadow-[0_0_25px_rgba(231,29,54,0.4)]">
             <span className="relative z-10">Enter The Upside Down</span>
             <div className="absolute inset-0 bg-stranger-red transform translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
           </a>
         </motion.div>
-      </motion.div>
-      
-      <motion.div animate={{ y: [0, 10, 0] }} transition={{ repeat: Infinity, duration: 3 }} className="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-stranger-red/60">
-        <ChevronDown size={40} className="animate-pulse" />
       </motion.div>
     </section>
   );
@@ -422,44 +429,6 @@ const EventCards = () => (
   </section>
 );
 
-const Tracks = () => {
-  const trackIcons = [
-    <Microscope size={80} className="text-stranger-red" />, // Hawkins Lab
-    <BookOpen size={80} className="text-stranger-red" />, // Central Library
-    <Home size={80} className="text-stranger-red" />, // Mike's House
-    <Castle size={80} className="text-stranger-red" />, // Castle Byers
-  ];
-
-  return (
-    <section id="tracks" className="py-20 relative">
-      <div className="max-w-7xl mx-auto px-6">
-        <SectionTitle subtitle>The Missions</SectionTitle>
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 justify-items-center">
-          {TRACKS.map((track, index) => (
-            <motion.div 
-              key={index} 
-              initial={{ opacity: 0, y: 40 }} 
-              whileInView={{ opacity: 1, y: 0 }} 
-              transition={{ delay: index * 0.1 }}
-              className="w-full"
-            >
-              <FlipCard
-                backTitle={track.trackName}
-                backContent={track.description}
-              >
-                <div className="flex flex-col items-center justify-center h-full">
-                  {trackIcons[index]}
-                  <h3 className="title-effect text-2xl" data-text={track.title}>{track.title}</h3>
-                </div>
-              </FlipCard>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-};
-
 const Prizes = () => (
   <section id="prizes" className="py-20 relative">
     <style>{`
@@ -516,66 +485,27 @@ const Prizes = () => (
       <SectionTitle subtitle>The Bounty</SectionTitle>
       <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ duration: 0.8 }} className="text-center text-cyan-300/80 text-xs md:text-sm font-serif italic mb-8 md:mb-16 px-4 max-w-3xl mx-auto uppercase tracking-wider">The gate is open, rewards await those who return from the void with the most powerful artifacts</motion.p>
       
-      <div className="relative flex flex-col md:flex-row items-center md:items-flex-end justify-center gap-6 md:gap-4 lg:gap-6 mb-8 py-4 md:py-0">
-        {/* First Prize - Champion Card (Top on mobile, Middle on desktop) */}
+      <div className="relative flex justify-center mb-8 py-4 md:py-0">
         <motion.div 
-          initial={{ opacity: 0, y: 120, scale: 0.8 }} 
-          whileInView={{ opacity: 1, y: 0, scale: 1 }} 
-          transition={{ duration: 0.9 }}
-          className="flex flex-col items-center z-10 md:pt-12 order-1 md:order-2 w-full md:w-auto"
+          initial={{ opacity: 0, y: 50 }} 
+          whileInView={{ opacity: 1, y: 0 }} 
+          transition={{ duration: 0.8 }}
+          className="flex flex-col items-center w-full px-4"
         >
           <motion.div 
-            animate={{ y: [0, -12, 0] }}
+            animate={{ y: [0, -10, 0] }}
             transition={{ repeat: Infinity, duration: 3 }}
-            className="w-56 sm:w-64 md:w-64 md:h-[420px] bg-black/80 border-2 border-red-500/70 backdrop-blur-md p-8 flex flex-col items-center justify-center text-center glow-border-red hover:border-red-400 transition-all duration-500 shadow-2xl"
+            className="w-full max-w-4xl bg-black/80 border-2 border-stranger-red/70 backdrop-blur-md p-8 md:p-12 flex flex-col items-center justify-center text-center glow-border-red hover:border-stranger-red transition-all duration-500 shadow-2xl rounded-lg"
           >
-            <div className="trophy-icon mb-3 text-3xl">🏆</div>
-            <p className="text-red-400/60 text-[9px] sm:text-xs uppercase tracking-widest mb-2 font-mono">Base 1st</p>
-            <h3 className="title-effect text-lg sm:text-xl md:text-2xl mb-3" data-text="The Champion">The Champion</h3>
-            <p className="text-2xl sm:text-3xl md:text-4xl font-black text-red-500 mb-3 sm:mb-4 neon-red">₹5,000</p>
-            <p className="text-red-400/50 text-[8px] sm:text-[10px] uppercase tracking-widest font-mono">Grand Prize First</p>
+            <div className="trophy-icon text-5xl md:text-6xl mb-4">🏆</div>
+            <h3 className="title-effect text-2xl md:text-4xl mb-2" data-text="Prize Pool">Prize Pool</h3>
+            <p className="text-3xl md:text-5xl font-black text-stranger-red mb-4 neon-red">Up to ₹1,00,000</p>
+            <div className="w-full h-[1px] bg-stranger-red/30 mb-6" />
+            
+            <p className="text-stranger-red/90 text-xs md:text-sm font-serif leading-relaxed max-w-3xl">
+              Winners of the hackathon will receive exciting cash prizes along with exclusive goodies, while every participant will be awarded a verified participation certificate to enhance their resume and LinkedIn profile, and top-performing teams will also gain special recognition certificates, networking opportunities with industry experts, and a chance to unlock internships and showcase their innovative projects to potential investors, making this event not just a competition but a complete opportunity for learning, growth, recognition, and career advancement.
+            </p>
           </motion.div>
-          <motion.div
-            animate={{ scale: [1, 1.15, 1] }}
-            transition={{ repeat: Infinity, duration: 2.5 }}
-            className="text-red-500 text-xs sm:text-sm md:text-base mt-4 font-bold tracking-widest"
-          >
-            ★ GRAND PRIZE ★
-          </motion.div>
-        </motion.div>
-
-        {/* Runner Up - Left on Desktop */}
-        <motion.div 
-          initial={{ opacity: 0, y: 50 }} 
-          whileInView={{ opacity: 1, y: 0 }} 
-          transition={{ duration: 0.8, delay: 0.1 }}
-          className="flex flex-col items-center order-2 md:order-1 w-full md:w-auto"
-        >
-          <div className="w-56 sm:w-64 md:w-64 md:h-[420px] bg-black/70 border-2 border-cyan-400/50 backdrop-blur-md p-8 flex flex-col items-center justify-center text-center glow-border-cyan hover:border-cyan-300 transition-all duration-500"
-          >
-            <div className="medal-icon mb-3 text-3xl">🥈</div>
-            <p className="text-cyan-400/60 text-[9px] sm:text-xs uppercase tracking-widest mb-2 font-mono">Base 2nd</p>
-            <h3 className="title-effect text-lg sm:text-xl md:text-2xl mb-3" data-text="Runner Up">Runner Up</h3>
-            <p className="text-2xl sm:text-3xl md:text-4xl font-black text-cyan-400 mb-3 sm:mb-4 neon-cyan">₹3,000</p>
-            <p className="text-cyan-400/50 text-[8px] sm:text-[10px] uppercase tracking-widest font-mono">Grand Prize Second</p>
-          </div>
-        </motion.div>
-
-        {/* 2nd Runner Up - Right on Desktop */}
-        <motion.div 
-          initial={{ opacity: 0, y: 50 }} 
-          whileInView={{ opacity: 1, y: 0 }} 
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="flex flex-col items-center order-3 md:order-3 w-full md:w-auto"
-        >
-          <div className="w-56 sm:w-64 md:w-64 md:h-[420px] bg-black/70 border-2 border-cyan-400/50 backdrop-blur-md p-8 flex flex-col items-center justify-center text-center glow-border-cyan hover:border-cyan-300 transition-all duration-500"
-          >
-            <div className="medal-icon mb-3 text-3xl">🏅</div>
-            <p className="text-cyan-400/60 text-[9px] sm:text-xs uppercase tracking-widest mb-2 font-mono">Base 3rd</p>
-            <h3 className="title-effect text-lg sm:text-xl md:text-2xl mb-3" data-text="2nd Runner Up">2nd Runner Up</h3>
-            <p className="text-2xl sm:text-3xl md:text-4xl font-black text-cyan-400 mb-3 sm:mb-4 neon-cyan">₹1,000</p>
-            <p className="text-cyan-400/50 text-[8px] sm:text-[10px] uppercase tracking-widest font-mono">Grand Prize Third</p>
-          </div>
         </motion.div>
       </div>
     </div>
@@ -625,11 +555,11 @@ const Timeline = () => (
         <div className="relative space-y-6">
           {/* Timeline events - Mobile */}
           {[
-            { title: "Registrations Open", date: "27 March", desc: "The signal breaks through. Team leaders from our world can finally reach the Upside Down. Register your crew to answer the call and enter the twisted realm of innovation." },
-            { title: "Last date to register", date: "4 April", desc: "The gate closes soon. This is your final chance to establish contact. After this date, the portal seals. No more teams can cross between dimensions." },
-            { title: "Hackathon Kickoff", date: "5 April", desc: "The veil weakens. The Upside Down awakens. Teams emerge from the darkness to craft impossible solutions. The void provides power. Use it wisely. The hunt begins." },
-            { title: "Hackathon Concludes", date: "6 April", desc: "The darkness recedes. The code must be submitted. Your artifacts, forged in the shadows, are needed back in our world. Time is running out. Hurry." },
-            { title: "Results Out", date: "Soon", desc: "The truth emerges from static. Champions will be revealed. Those who conquered the Upside Down and returned with the most powerful artifacts will be crowned. The end... or a new beginning?" }
+            { title: "Registrations Open", date: "5 April", desc: "The signal breaks through. Team leaders from our world can finally reach the Upside Down. Register your crew to answer the call and enter the twisted realm of innovation." },
+            { title: "Last date to register", date: "10 April", desc: "The gate closes soon. This is your final chance to establish contact. After this date, the portal seals. No more teams can cross between dimensions." },
+            { title: "Hackathon Kickoff", date: "11 April", desc: "The veil weakens. The Upside Down awakens. Teams emerge from the darkness to craft impossible solutions. The void provides power. Use it wisely. The hunt begins." },
+            { title: "Hackathon Concludes", date: "12 April", desc: "The darkness recedes. The code must be submitted. Your artifacts, forged in the shadows, are needed back in our world. Time is running out. Hurry." },
+            { title: "Results Out", date: "12 April On spot", desc: "The truth emerges from static. Champions will be revealed. Those who conquered the Upside Down and returned with the most powerful artifacts will be crowned. The end... or a new beginning?" }
           ].map((event, idx) => (
             <motion.div key={idx} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: idx * 0.1 }} className="relative">
               <div className="bg-black/70 border-2 border-orange-600/60 backdrop-blur-md p-6 rounded-xl">
@@ -650,47 +580,47 @@ const Timeline = () => (
           <motion.div initial={{ opacity: 0, y: -30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0 }} className="flex justify-center">
             <div className="bg-black/70 border-2 border-orange-600/60 backdrop-blur-md p-8 rounded-xl text-center w-full shadow-[0_0_30px_rgba(234,88,12,0.2)] hover:shadow-[0_0_40px_rgba(234,88,12,0.4)] transition-all duration-500">
               <h3 className="text-xl font-bold text-white mb-3 font-serif uppercase tracking-wider">Registrations Open</h3>
-              <p className="text-orange-500 font-black text-2xl mb-4">27 March</p>
+              <p className="text-orange-500 font-black text-2xl mb-4">5 April</p>
               <p className="text-zinc-300 text-sm font-serif leading-relaxed">The signal breaks through. Team leaders from our world can finally reach the Upside Down. Register your crew to answer the call and enter the twisted realm of innovation.</p>
             </div>
           </motion.div>
           
-          {/* Card 2: Hackathon Kickoff */}
+          {/* Card 2: Last date to register */}
           <motion.div initial={{ opacity: 0, y: -30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.1 }} className="flex justify-center">
             <div className="bg-black/70 border-2 border-orange-600/60 backdrop-blur-md p-8 rounded-xl text-center w-full shadow-[0_0_30px_rgba(234,88,12,0.2)] hover:shadow-[0_0_40px_rgba(234,88,12,0.4)] transition-all duration-500">
-              <h3 className="text-xl font-bold text-white mb-3 font-serif uppercase tracking-wider">Hackathon Kickoff</h3>
-              <p className="text-orange-500 font-black text-2xl mb-4">5 April</p>
-              <p className="text-zinc-300 text-sm font-serif leading-relaxed">The veil weakens. The Upside Down awakens. Teams emerge from the darkness to craft impossible solutions. The void provides power. Use it wisely. The hunt begins.</p>
+              <h3 className="text-xl font-bold text-white mb-3 font-serif uppercase tracking-wider">Last date to register</h3>
+              <p className="text-orange-500 font-black text-2xl mb-4">10 April</p>
+              <p className="text-zinc-300 text-sm font-serif leading-relaxed">The gate closes soon. This is your final chance to establish contact. After this date, the portal seals. No more teams can cross between dimensions.</p>
             </div>
           </motion.div>
           
-          {/* Card 3: Results Out */}
+          {/* Card 3: Hackathon Kickoff */}
           <motion.div initial={{ opacity: 0, y: -30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.2 }} className="flex justify-center">
             <div className="bg-black/70 border-2 border-orange-600/60 backdrop-blur-md p-8 rounded-xl text-center w-full shadow-[0_0_30px_rgba(234,88,12,0.2)] hover:shadow-[0_0_40px_rgba(234,88,12,0.4)] transition-all duration-500">
-              <h3 className="text-xl font-bold text-white mb-3 font-serif uppercase tracking-wider">Results Out</h3>
-              <p className="text-orange-500 font-black text-2xl mb-4">Soon</p>
-              <p className="text-zinc-300 text-sm font-serif leading-relaxed">The truth emerges from static. Champions will be revealed. Those who conquered the Upside Down and returned with the most powerful artifacts will be crowned. The end... or a new beginning?</p>
+              <h3 className="text-xl font-bold text-white mb-3 font-serif uppercase tracking-wider">Hackathon Kickoff</h3>
+              <p className="text-orange-500 font-black text-2xl mb-4">11 April</p>
+              <p className="text-zinc-300 text-sm font-serif leading-relaxed">The veil weakens. The Upside Down awakens. Teams emerge from the darkness to craft impossible solutions. The void provides power. Use it wisely. The hunt begins.</p>
             </div>
           </motion.div>
         </div>
         
         {/* Bottom row - 2 cards */}
         <div className="grid grid-cols-2 gap-6 max-w-2xl mx-auto">
-          {/* Card 4: Last date to register */}
+          {/* Card 4: Hackathon Concludes */}
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.3 }} className="flex justify-center">
             <div className="bg-black/70 border-2 border-orange-600/60 backdrop-blur-md p-8 rounded-xl text-center w-full shadow-[0_0_30px_rgba(234,88,12,0.2)] hover:shadow-[0_0_40px_rgba(234,88,12,0.4)] transition-all duration-500">
-              <h3 className="text-xl font-bold text-white mb-3 font-serif uppercase tracking-wider">Last date to register</h3>
-              <p className="text-orange-500 font-black text-2xl mb-4">4 April</p>
-              <p className="text-zinc-300 text-sm font-serif leading-relaxed">The gate closes soon. This is your final chance to establish contact. After this date, the portal seals. No more teams can cross between dimensions.</p>
+              <h3 className="text-xl font-bold text-white mb-3 font-serif uppercase tracking-wider">Hackathon Concludes</h3>
+              <p className="text-orange-500 font-black text-2xl mb-4">12 April</p>
+              <p className="text-zinc-300 text-sm font-serif leading-relaxed">The darkness recedes. The code must be submitted. Your artifacts, forged in the shadows, are needed back in our world. Time is running out. Hurry.</p>
             </div>
           </motion.div>
           
-          {/* Card 5: Hackathon Concludes */}
+          {/* Card 5: Results Out */}
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.4 }} className="flex justify-center">
             <div className="bg-black/70 border-2 border-orange-600/60 backdrop-blur-md p-8 rounded-xl text-center w-full shadow-[0_0_30px_rgba(234,88,12,0.2)] hover:shadow-[0_0_40px_rgba(234,88,12,0.4)] transition-all duration-500">
-              <h3 className="text-xl font-bold text-white mb-3 font-serif uppercase tracking-wider">Hackathon Concludes</h3>
-              <p className="text-orange-500 font-black text-2xl mb-4">6 April</p>
-              <p className="text-zinc-300 text-sm font-serif leading-relaxed">The darkness recedes. The code must be submitted. Your artifacts, forged in the shadows, are needed back in our world. Time is running out. Hurry.</p>
+              <h3 className="text-xl font-bold text-white mb-3 font-serif uppercase tracking-wider">Results Out</h3>
+              <p className="text-orange-500 font-black text-2xl mb-4">12 April On spot</p>
+              <p className="text-zinc-300 text-sm font-serif leading-relaxed">The truth emerges from static. Champions will be revealed. Those who conquered the Upside Down and returned with the most powerful artifacts will be crowned. The end... or a new beginning?</p>
             </div>
           </motion.div>
         </div>
@@ -783,7 +713,11 @@ export default function App() {
       <button
         aria-label={muted ? 'Unmute background music' : 'Mute background music'}
         onClick={() => setMuted(prev => !prev)}
-        className={`fixed z-50 bottom-6 right-6 w-14 h-14 rounded-full flex items-center justify-center shadow-lg transition-all focus:outline-none focus:ring-2 focus:ring-stranger-red/50 ${muted ? 'bg-white border-2 border-stranger-red text-stranger-red' : 'bg-stranger-red text-white'}`}
+        className={`fixed z-50 bottom-6 right-6 w-14 h-14 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-stranger-red/50 hover:scale-110 ${
+          muted
+            ? 'bg-black border-2 border-stranger-red text-stranger-red shadow-[0_0_20px_rgba(231,29,54,0.3)]'
+            : 'bg-stranger-red text-white shadow-[0_0_20px_rgba(231,29,54,0.6)]'
+        }`}
       >
         {muted ? <VolumeX size={20} /> : <Volume2 size={20} />}
       </button>
@@ -792,7 +726,6 @@ export default function App() {
         <GroupSectionContainer>
           <About />
           <EventCards />
-          <Tracks />
           <Prizes />
           <Timeline />
         </GroupSectionContainer>
