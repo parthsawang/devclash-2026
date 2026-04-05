@@ -265,7 +265,7 @@ const Navbar = () => {
                 </a>
               ))}
               <a
-                href="https://unstop.com/hackathons/devclash-drdypatil-institute-of-technologypimpripune-411018-1670680"
+                href="https://unstop.com/o/0qBThVD?utm_medium=Share&utm_source=tcwrevub17232&utm_campaign=Online_coding_challenge"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-6 py-2 border border-stranger-red text-stranger-red font-mono text-[10px] tracking-widest uppercase hover:bg-stranger-red hover:text-black transition-all duration-300 shadow-[0_0_15px_rgba(231,29,54,0.1)]"
