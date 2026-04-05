@@ -264,7 +264,14 @@ const Navbar = () => {
                   <div className="absolute top-1/2 left-0 w-full h-[1px] bg-stranger-red/0 group-hover:bg-stranger-red/40 group-hover:animate-pulse transition-all" />
                 </a>
               ))}
-              <button className="px-6 py-2 border border-stranger-red text-stranger-red font-mono text-[10px] tracking-widest uppercase hover:bg-stranger-red hover:text-black transition-all duration-300 shadow-[0_0_15px_rgba(231,29,54,0.1)]">Register</button>
+              <a
+                href="https://unstop.com/hackathons/devclash-drdypatil-institute-of-technologypimpripune-411018-1670680"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-6 py-2 border border-stranger-red text-stranger-red font-mono text-[10px] tracking-widest uppercase hover:bg-stranger-red hover:text-black transition-all duration-300 shadow-[0_0_15px_rgba(231,29,54,0.1)]"
+              >
+                Register
+              </a>
             </div>
           </div>
 
@@ -355,7 +362,12 @@ const Hero = () => {
         </motion.div>
 
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1 }} className="flex flex-col gap-8 justify-center items-center mt-12">
-          <a href="#register" className="group relative px-12 py-5 bg-black border-2 border-stranger-red text-stranger-red font-black font-mono tracking-[0.4em] hover:bg-stranger-red hover:text-black transition-all duration-500 uppercase overflow-hidden shadow-[0_0_25px_rgba(231,29,54,0.4)]">
+          <a
+            href="https://unstop.com/hackathons/devclash-drdypatil-institute-of-technologypimpripune-411018-1670680"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group relative px-12 py-5 bg-black border-2 border-stranger-red text-stranger-red font-black font-mono tracking-[0.4em] hover:bg-stranger-red hover:text-black transition-all duration-500 uppercase overflow-hidden shadow-[0_0_25px_rgba(231,29,54,0.4)]"
+          >
             <span className="relative z-10">Enter The Upside Down</span>
             <div className="absolute inset-0 bg-stranger-red transform translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
           </a>
