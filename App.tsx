@@ -265,7 +265,7 @@ const Navbar = () => {
                 </a>
               ))}
               <a
-                href="https://unstop.com/o/0qBThVD?utm_medium=Share&utm_source=tcwrevub17232&utm_campaign=Online_coding_challenge"
+                href="https://unstop.com/o/0qBThVD?utm_medium=Share&utm_source=tcwrevub17232&utm_campaign=Online_coding_challengenp"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-6 py-2 border border-stranger-red text-stranger-red font-mono text-[10px] tracking-widest uppercase hover:bg-stranger-red hover:text-black transition-all duration-300 shadow-[0_0_15px_rgba(231,29,54,0.1)]"
@@ -423,12 +423,12 @@ const EventCards = () => (
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} whileHover={{ scale: 1.05 }} className="bg-black/60 border border-zinc-800 p-6 rounded-md text-center cursor-pointer">
           <h4 className="title-effect text-xl mb-3" data-text="ABOUT EVENT">ABOUT EVENT</h4>
-          <p className="text-zinc-300 text-sm leading-relaxed">Get ready for an exhilarating hackathon experience at DEVCLASH. Our event is a celebration of creativity, coding prowess and teamwork. Join us from 11 Apr to 12 Apr for an unforgettable journey. Explore the world of technology, showcase your skills and vie for incredible prizes. Let's innovate, collaborate and create something extraordinary!</p>
+          <p className="text-zinc-300 text-sm leading-relaxed">Get ready for an exhilarating hackathon experience at DEVCLASH. Our event is a celebration of creativity, coding prowess and teamwork. Join us from 18 Apr to 19 Apr for an unforgettable journey. Explore the world of technology, showcase your skills and vie for incredible prizes. Let's innovate, collaborate and create something extraordinary!</p>
         </motion.div>
 
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }} whileHover={{ scale: 1.05 }} className="bg-black/60 border border-zinc-800 p-6 rounded-md text-center cursor-pointer">
           <h4 className="title-effect text-xl mb-3" data-text="EVENT TIMING">EVENT TIMING</h4>
-          <p className="text-zinc-300 text-sm leading-relaxed">From Feb 2026 - Feb 2026<br/>9:00 AM onwards</p>
+          <p className="text-zinc-300 text-sm leading-relaxed">From 18 APRIL 2026 - 19 APRIL 2026<br/>9:00 AM onwards</p>
         </motion.div>
 
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} whileHover={{ scale: 1.05 }} className="bg-black/60 border border-zinc-800 p-6 rounded-md text-center cursor-pointer">
@@ -570,10 +570,10 @@ const Timeline = () => (
           {/* Timeline events - Mobile */}
           {[
             { title: "Registrations Open", date: "5 April", desc: "The signal breaks through. Team leaders from our world can finally reach the Upside Down. Register your crew to answer the call and enter the twisted realm of innovation." },
-            { title: "Last date to register", date: "10 April", desc: "The gate closes soon. This is your final chance to establish contact. After this date, the portal seals. No more teams can cross between dimensions." },
-            { title: "Hackathon Kickoff", date: "11 April", desc: "The veil weakens. The Upside Down awakens. Teams emerge from the darkness to craft impossible solutions. The void provides power. Use it wisely. The hunt begins." },
-            { title: "Hackathon Concludes", date: "12 April", desc: "The darkness recedes. The code must be submitted. Your artifacts, forged in the shadows, are needed back in our world. Time is running out. Hurry." },
-            { title: "Results Out", date: "12 April On spot", desc: "The truth emerges from static. Champions will be revealed. Those who conquered the Upside Down and returned with the most powerful artifacts will be crowned. The end... or a new beginning?" }
+            { title: "Last date to register", date: "15 April", desc: "The gate closes soon. This is your final chance to establish contact. After this date, the portal seals. No more teams can cross between dimensions." },
+            { title: "Hackathon Kickoff", date: "18 April", desc: "The veil weakens. The Upside Down awakens. Teams emerge from the darkness to craft impossible solutions. The void provides power. Use it wisely. The hunt begins." },
+            { title: "Hackathon Concludes", date: "19 April", desc: "The darkness recedes. The code must be submitted. Your artifacts, forged in the shadows, are needed back in our world. Time is running out. Hurry." },
+            { title: "Results Out", date: "19 April On spot", desc: "The truth emerges from static. Champions will be revealed. Those who conquered the Upside Down and returned with the most powerful artifacts will be crowned. The end... or a new beginning?" }
           ].map((event, idx) => (
             <motion.div key={idx} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: idx * 0.1 }} className="relative">
               <div className="bg-black/70 border-2 border-orange-600/60 backdrop-blur-md p-6 rounded-xl">
@@ -612,7 +612,7 @@ const Timeline = () => (
           <motion.div initial={{ opacity: 0, y: -30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.2 }} className="flex justify-center">
             <div className="bg-black/70 border-2 border-orange-600/60 backdrop-blur-md p-8 rounded-xl text-center w-full shadow-[0_0_30px_rgba(234,88,12,0.2)] hover:shadow-[0_0_40px_rgba(234,88,12,0.4)] transition-all duration-500">
               <h3 className="text-xl font-bold text-white mb-3 font-serif uppercase tracking-wider">Hackathon Kickoff</h3>
-              <p className="text-orange-500 font-black text-2xl mb-4">11 April</p>
+              <p className="text-orange-500 font-black text-2xl mb-4">18 April</p>
               <p className="text-zinc-300 text-sm font-serif leading-relaxed">The veil weakens. The Upside Down awakens. Teams emerge from the darkness to craft impossible solutions. The void provides power. Use it wisely. The hunt begins.</p>
             </div>
           </motion.div>
@@ -624,7 +624,7 @@ const Timeline = () => (
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.3 }} className="flex justify-center">
             <div className="bg-black/70 border-2 border-orange-600/60 backdrop-blur-md p-8 rounded-xl text-center w-full shadow-[0_0_30px_rgba(234,88,12,0.2)] hover:shadow-[0_0_40px_rgba(234,88,12,0.4)] transition-all duration-500">
               <h3 className="text-xl font-bold text-white mb-3 font-serif uppercase tracking-wider">Hackathon Concludes</h3>
-              <p className="text-orange-500 font-black text-2xl mb-4">12 April</p>
+              <p className="text-orange-500 font-black text-2xl mb-4">19 April</p>
               <p className="text-zinc-300 text-sm font-serif leading-relaxed">The darkness recedes. The code must be submitted. Your artifacts, forged in the shadows, are needed back in our world. Time is running out. Hurry.</p>
             </div>
           </motion.div>
@@ -633,7 +633,7 @@ const Timeline = () => (
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.4 }} className="flex justify-center">
             <div className="bg-black/70 border-2 border-orange-600/60 backdrop-blur-md p-8 rounded-xl text-center w-full shadow-[0_0_30px_rgba(234,88,12,0.2)] hover:shadow-[0_0_40px_rgba(234,88,12,0.4)] transition-all duration-500">
               <h3 className="text-xl font-bold text-white mb-3 font-serif uppercase tracking-wider">Results Out</h3>
-              <p className="text-orange-500 font-black text-2xl mb-4">12 April On spot</p>
+              <p className="text-orange-500 font-black text-2xl mb-4">19 April On spot</p>
               <p className="text-zinc-300 text-sm font-serif leading-relaxed">The truth emerges from static. Champions will be revealed. Those who conquered the Upside Down and returned with the most powerful artifacts will be crowned. The end... or a new beginning?</p>
             </div>
           </motion.div>
