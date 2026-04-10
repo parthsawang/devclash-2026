@@ -571,7 +571,7 @@ const Timeline = () => (
           {[
             { title: "Registrations Open", date: "5 April", desc: "The signal breaks through. Team leaders from our world can finally reach the Upside Down. Register your crew to answer the call and enter the twisted realm of innovation." },
             { title: "Last date to register", date: "15 April", desc: "The gate closes soon. This is your final chance to establish contact. After this date, the portal seals. No more teams can cross between dimensions." },
-            { title: "Hackathon Kickoff", date: "18 April", desc: "The veil weakens. The Upside Down awakens. Teams emerge from the darkness to craft impossible solutions. The void provides power. Use it wisely. The hunt begins." },
+            { title: "Hackathon Kickoff", date: "15 April", desc: "The veil weakens. The Upside Down awakens. Teams emerge from the darkness to craft impossible solutions. The void provides power. Use it wisely. The hunt begins." },
             { title: "Hackathon Concludes", date: "19 April", desc: "The darkness recedes. The code must be submitted. Your artifacts, forged in the shadows, are needed back in our world. Time is running out. Hurry." },
             { title: "Results Out", date: "19 April On spot", desc: "The truth emerges from static. Champions will be revealed. Those who conquered the Upside Down and returned with the most powerful artifacts will be crowned. The end... or a new beginning?" }
           ].map((event, idx) => (
