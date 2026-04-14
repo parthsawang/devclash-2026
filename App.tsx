@@ -265,7 +265,7 @@ const Navbar = () => {
                 </a>
               ))}
               <a
-                href="https://unstop.com/o/0qBThVD?utm_medium=Share&utm_source=tcwrevub17232&utm_campaign=Online_coding_challengenp"
+                href="https://forms.gle/Q1vH1aWqTwG8WcoA6"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-6 py-2 border border-stranger-red text-stranger-red font-mono text-[10px] tracking-widest uppercase hover:bg-stranger-red hover:text-black transition-all duration-300 shadow-[0_0_15px_rgba(231,29,54,0.1)]"
@@ -363,7 +363,7 @@ const Hero = () => {
 
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1 }} className="flex flex-col gap-8 justify-center items-center mt-12">
           <motion.a
-            href="https://unstop.com/o/0qBThVD?utm_medium=Share&utm_source=tcwrevub17232&utm_campaign=Online_coding_challengenp"
+            href="https://forms.gle/Q1vH1aWqTwG8WcoA6"
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ scale: 1.05 }}
@@ -570,10 +570,10 @@ const Timeline = () => (
           {/* Timeline events - Mobile */}
           {[
             { title: "Registrations Open", date: "5 April", desc: "The signal breaks through. Team leaders from our world can finally reach the Upside Down. Register your crew to answer the call and enter the twisted realm of innovation." },
-            { title: "Last date to register", date: "15 April", desc: "The gate closes soon. This is your final chance to establish contact. After this date, the portal seals. No more teams can cross between dimensions." },
+            { title: "Last date to register", date: "18 April", desc: "The gate closes soon. This is your final chance to establish contact. After this date, the portal seals. No more teams can cross between dimensions." },
             { title: "Hackathon Kickoff", date: "15 April", desc: "The veil weakens. The Upside Down awakens. Teams emerge from the darkness to craft impossible solutions. The void provides power. Use it wisely. The hunt begins." },
             { title: "Hackathon Concludes", date: "19 April", desc: "The darkness recedes. The code must be submitted. Your artifacts, forged in the shadows, are needed back in our world. Time is running out. Hurry." },
-            { title: "Results Out", date: "19 April On spot", desc: "The truth emerges from static. Champions will be revealed. Those who conquered the Upside Down and returned with the most powerful artifacts will be crowned. The end... or a new beginning?" }
+            { title: "Results Out", date: "19 April ", desc: "The truth emerges from static. Champions will be revealed. Those who conquered the Upside Down and returned with the most powerful artifacts will be crowned. The end... or a new beginning?" }
           ].map((event, idx) => (
             <motion.div key={idx} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: idx * 0.1 }} className="relative">
               <div className="bg-black/70 border-2 border-orange-600/60 backdrop-blur-md p-6 rounded-xl">
@@ -603,7 +603,7 @@ const Timeline = () => (
           <motion.div initial={{ opacity: 0, y: -30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.1 }} className="flex justify-center">
             <div className="bg-black/70 border-2 border-orange-600/60 backdrop-blur-md p-8 rounded-xl text-center w-full shadow-[0_0_30px_rgba(234,88,12,0.2)] hover:shadow-[0_0_40px_rgba(234,88,12,0.4)] transition-all duration-500">
               <h3 className="text-xl font-bold text-white mb-3 font-serif uppercase tracking-wider">Last date to register</h3>
-              <p className="text-orange-500 font-black text-2xl mb-4">10 April</p>
+              <p className="text-orange-500 font-black text-2xl mb-4">18 April</p>
               <p className="text-zinc-300 text-sm font-serif leading-relaxed">The gate closes soon. This is your final chance to establish contact. After this date, the portal seals. No more teams can cross between dimensions.</p>
             </div>
           </motion.div>
@@ -667,6 +667,17 @@ export default function App() {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [muted, setMuted] = useState<boolean>(() => localStorage.getItem('bg-muted') === 'true');
   const [audioStarted, setAudioStarted] = useState(false);
+
+  // Handle Enter key to open registration form
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Enter') {
+        window.open('https://forms.gle/Q1vH1aWqTwG8WcoA6', '_blank');
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   // Initialize audio on first user interaction
   useEffect(() => {
