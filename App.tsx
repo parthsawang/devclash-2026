@@ -633,7 +633,7 @@ const Timeline = () => (
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.4 }} className="flex justify-center">
             <div className="bg-black/70 border-2 border-orange-600/60 backdrop-blur-md p-8 rounded-xl text-center w-full shadow-[0_0_30px_rgba(234,88,12,0.2)] hover:shadow-[0_0_40px_rgba(234,88,12,0.4)] transition-all duration-500">
               <h3 className="text-xl font-bold text-white mb-3 font-serif uppercase tracking-wider">Results Out</h3>
-              <p className="text-orange-500 font-black text-2xl mb-4">19 April On spot</p>
+              <p className="text-orange-500 font-black text-2xl mb-4">19 April</p>
               <p className="text-zinc-300 text-sm font-serif leading-relaxed">The truth emerges from static. Champions will be revealed. Those who conquered the Upside Down and returned with the most powerful artifacts will be crowned. The end... or a new beginning?</p>
             </div>
           </motion.div>
