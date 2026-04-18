@@ -242,6 +242,147 @@
         background: #e71d36;
         color: white;
       }
+
+      .pdf-viewer-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.92);
+        backdrop-filter: blur(18px);
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1.5rem;
+      }
+
+      .pdf-viewer-modal {
+        width: min(1200px, 100%);
+        height: min(90vh, 100%);
+        background: rgba(10, 10, 10, 0.96);
+        border: 1px solid rgba(231, 29, 54, 0.35);
+        border-radius: 1rem;
+        box-shadow: 0 0 80px rgba(231, 29, 54, 0.75);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .pdf-viewer-close {
+        align-self: flex-end;
+        margin: 1rem;
+        padding: 0.75rem 1.2rem;
+        background: rgba(231, 29, 54, 0.95);
+        border: none;
+        border-radius: 9999px;
+        color: white;
+        font-family: 'ITC Benguiat', serif;
+        font-weight: bold;
+        cursor: pointer;
+        transition: transform 0.2s ease, background 0.2s ease;
+      }
+
+      .pdf-viewer-close:hover {
+        transform: scale(1.03);
+        background: #ff385d;
+      }
+
+      .pdf-viewer-frame {
+        flex: 1;
+        border: none;
+        width: 100%;
+        min-height: 0;
+      }
+
+      body, #track-selection, .pdf-viewer-overlay, .pdf-viewer-modal, .view-pdf-button, .title-effect, .text-zinc-400, .nav-link-glitch, p, h1, h2, .group {
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      body {
+        -webkit-touch-callout: none;
+      }
+
+      .view-pdf-button {
+        margin-top: 1.5rem;
+        padding: 1rem 1.5rem;
+        border-radius: 9999px;
+        background: linear-gradient(135deg, rgba(251, 191, 36, 0.95), rgba(245, 158, 11, 0.95));
+        color: #050505;
+        font-family: 'ITC Benguiat', serif;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .view-pdf-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 15px 35px rgba(245, 158, 11, 0.25);
+      }
+
+      .download-link {
+        margin-top: 1rem;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.85rem 1.2rem;
+        border-radius: 9999px;
+        border: 1px solid rgba(255,255,255,0.15);
+        background: rgba(255,255,255,0.08);
+        color: #f8fafc;
+        text-decoration: none;
+        font-family: 'ITC Benguiat', serif;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+      }
+
+      .download-link:hover {
+        transform: translateY(-1px);
+        background: rgba(255,255,255,0.12);
+        border-color: rgba(231,29,54,0.7);
+      }
+
+      .screenshot-warning-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 1100;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.94);
+        backdrop-filter: blur(20px);
+        padding: 1.5rem;
+      }
+
+      .screenshot-warning-overlay.hidden {
+        display: none;
+      }
+
+      .screenshot-warning-box {
+        width: min(680px, 100%);
+        background: rgba(10, 10, 10, 0.98);
+        border: 1px solid rgba(231, 29, 54, 0.35);
+        border-radius: 1rem;
+        padding: 2rem;
+        text-align: center;
+        box-shadow: 0 0 80px rgba(231, 29, 54, 0.35);
+      }
+
+      .screenshot-warning-box h3 {
+        margin-bottom: 1rem;
+        font-size: 2rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+      }
+
+      .screenshot-warning-box p {
+        color: #ddd;
+        line-height: 1.8;
+      }
     </style>
   </head>
   <body>
@@ -290,21 +431,115 @@
         <div id="track-selection" class="flex flex-col md:flex-row justify-center items-stretch gap-8 relative z-10 transition-all duration-500">
           
           <!-- Open Track Card -->
-          <a href="/open_track_ps.pdf" download="Open_Track_Problem_Statements.pdf" class="group cursor-pointer w-full md:w-1/2 max-w-md bg-black/40 border border-stranger-red/20 hover:border-stranger-red/80 p-10 backdrop-blur-md rounded-xl transition-all duration-500 hover:shadow-[0_0_40px_rgba(231,29,54,0.4)] hover:-translate-y-2 flex flex-col items-center justify-center min-h-[300px] no-underline">
+          <div data-pdf="/open_track_ps.pdf" class="group cursor-pointer w-full md:w-1/3 max-w-md bg-black/40 border border-stranger-red/20 hover:border-stranger-red/80 p-10 backdrop-blur-md rounded-xl transition-all duration-500 hover:shadow-[0_0_40px_rgba(231,29,54,0.4)] hover:-translate-y-2 flex flex-col items-center justify-center min-h-[300px] no-underline">
             <h2 class="title-effect text-3xl md:text-5xl mb-4 group-hover:scale-110 transition-transform duration-300" data-text="OPEN TRACK">OPEN TRACK</h2>
-            <p class="text-zinc-400 font-serif italic text-center mt-4 group-hover:text-zinc-200 transition-colors">Download Problem Statements (PDF)</p>
-          </a>
+            <p class="text-zinc-400 font-serif italic text-center mt-4 group-hover:text-zinc-200 transition-colors">View Problem Statements (PDF)</p>
+            <a href="/open_track_ps.pdf" download="Open_Track_Problem_Statements.pdf" class="download-link">Download PDF</a>
+          </div>
 
           <!-- Web3 Track Card -->
-          <a href="/WEB3_TRACK_PS.pdf" download="Web3_Track_Problem_Statements.pdf" class="group cursor-pointer w-full md:w-1/2 max-w-md bg-black/40 border border-purple-500/20 hover:border-purple-500/80 p-10 backdrop-blur-md rounded-xl transition-all duration-500 hover:shadow-[0_0_40px_rgba(168,85,247,0.4)] hover:-translate-y-2 flex flex-col items-center justify-center min-h-[300px] no-underline">
+          <div data-pdf="/WEB3_TRACK_PS.pdf" class="group cursor-pointer w-full md:w-1/3 max-w-md bg-black/40 border border-purple-500/20 hover:border-purple-500/80 p-10 backdrop-blur-md rounded-xl transition-all duration-500 hover:shadow-[0_0_40px_rgba(168,85,247,0.4)] hover:-translate-y-2 flex flex-col items-center justify-center min-h-[300px] no-underline">
             <h2 class="font-serif text-3xl md:text-5xl mb-4 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-purple-600 font-bold uppercase tracking-widest group-hover:scale-110 transition-transform duration-300 filter drop-shadow-[0_0_10px_rgba(168,85,247,0.5)]">WEB3 TRACK</h2>
-            <p class="text-zinc-400 font-serif italic text-center mt-4 group-hover:text-zinc-200 transition-colors">Download Problem Statements (PDF)</p>
-          </a>
+            <p class="text-zinc-400 font-serif italic text-center mt-4 group-hover:text-zinc-200 transition-colors">View Problem Statements (PDF)</p>
+            <a href="/WEB3_TRACK_PS.pdf" download="Web3_Track_Problem_Statements.pdf" class="download-link">Download PDF</a>
+          </div>
+
+          <!-- HireX Track Card -->
+          <div class="group w-full md:w-1/3 max-w-md bg-black/40 border border-amber-500/20 hover:border-amber-500/80 p-10 backdrop-blur-md rounded-xl transition-all duration-500 hover:shadow-[0_0_40px_rgba(251,191,36,0.4)] hover:-translate-y-2 flex flex-col items-center justify-center min-h-[300px]">
+            <h2 class="font-serif text-3xl md:text-5xl mb-4 text-amber-300 font-bold uppercase tracking-widest group-hover:scale-110 transition-transform duration-300 filter drop-shadow-[0_0_10px_rgba(251,191,36,0.5)]">HIREX TRACK</h2>
+            <p class="text-zinc-400 font-serif italic text-center mt-4 group-hover:text-zinc-200 transition-colors">View Problem Statements (PDF)</p>
+            <button id="view-hirex-pdf" type="button" data-pdf="/hirex.pdf" class="view-pdf-button">View PDF</button>
+            <a href="/hirex.pdf" download="HireX_Track_Problem_Statements.pdf" class="download-link">Download PDF</a>
+          </div>
+        </div>
+      </div>
+
+      <div id="hirex-pdf-overlay" class="pdf-viewer-overlay hidden" aria-hidden="true" onclick="if (event.target === this) closePdf()">
+        <div class="pdf-viewer-modal">
+          <button id="hirex-pdf-close" class="pdf-viewer-close" type="button">Close</button>
+          <iframe id="hirex-pdf-frame" class="pdf-viewer-frame" src="" title="HireX Problem Statement" oncontextmenu="return false;"></iframe>
+        </div>
+      </div>
+
+      <div id="screenshot-warning" class="screenshot-warning-overlay hidden" aria-hidden="true">
+        <div class="screenshot-warning-box">
+          <h3>Screenshot Not Allowed</h3>
+          <p>For security reasons, screen capture is disabled while viewing the problem statements. Please close this viewer and continue without capturing the page.</p>
+          <button id="screenshot-warning-close" class="pdf-viewer-close mt-6" type="button">Close</button>
         </div>
       </div>
     </section>
 
     <script>
+      // Problem statement viewer
+      function openPdf(pdfUrl) {
+        const overlay = document.getElementById('hirex-pdf-overlay');
+        const frame = document.getElementById('hirex-pdf-frame');
+        if (!overlay || !frame) return;
+        frame.src = `${pdfUrl}#toolbar=0&navpanes=0&scrollbar=0`;
+        overlay.classList.remove('hidden');
+        overlay.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closePdf() {
+        const overlay = document.getElementById('hirex-pdf-overlay');
+        const frame = document.getElementById('hirex-pdf-frame');
+        if (!overlay || !frame) return;
+        overlay.classList.add('hidden');
+        overlay.setAttribute('aria-hidden', 'true');
+        frame.src = '';
+        document.body.style.overflow = '';
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener('contextmenu', (event) => event.preventDefault());
+
+        const pdfButtons = document.querySelectorAll('[data-pdf]');
+        pdfButtons.forEach((button) => {
+          button.addEventListener('click', () => {
+            const pdfUrl = button.getAttribute('data-pdf');
+            if (pdfUrl) openPdf(pdfUrl);
+          });
+        });
+
+        const closeButton = document.getElementById('hirex-pdf-close');
+        if (closeButton) closeButton.addEventListener('click', closePdf);
+
+        const warningClose = document.getElementById('screenshot-warning-close');
+        if (warningClose) warningClose.addEventListener('click', hideScreenshotWarning);
+
+        document.addEventListener('keydown', (event) => {
+          const key = event.key ? event.key.toLowerCase() : '';
+          if (key === 'printscreen' || key === 'print' || (event.ctrlKey && event.shiftKey && key === 's')) {
+            event.preventDefault();
+            hideScreenshotWarning();
+            showScreenshotWarning();
+          }
+        });
+
+        document.addEventListener('visibilitychange', () => {
+          if (document.hidden) {
+            closePdf();
+            showScreenshotWarning();
+          }
+        });
+      });
+
+      function showScreenshotWarning() {
+        const warning = document.getElementById('screenshot-warning');
+        if (!warning) return;
+        warning.classList.remove('hidden');
+        warning.setAttribute('aria-hidden', 'false');
+      }
+
+      function hideScreenshotWarning() {
+        const warning = document.getElementById('screenshot-warning');
+        if (!warning) return;
+        warning.classList.add('hidden');
+        warning.setAttribute('aria-hidden', 'true');
+      }
+
       // Snow effect
       function createSnowflakes() {
         const snow = document.createElement('div');
