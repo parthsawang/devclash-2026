@@ -249,6 +249,9 @@ const Navbar = () => {
                     if (link.name === 'Problem Statements') {
                       e.preventDefault();
                       window.open(import.meta.env.BASE_URL + 'problem-statements.html', '_blank');
+                    } else if (link.name === 'Bounties') {
+                      e.preventDefault();
+                      window.open(import.meta.env.BASE_URL + 'bounties.html', '_blank');
                     } else {
                       setActiveLink(link.href);
                     }
@@ -294,6 +297,9 @@ const Navbar = () => {
                 if (link.name === 'Problem Statements') {
                   e.preventDefault();
                   window.open(import.meta.env.BASE_URL + 'problem-statements.html', '_blank');
+                } else if (link.name === 'Bounties') {
+                  e.preventDefault();
+                  window.open(import.meta.env.BASE_URL + 'bounties.html', '_blank');
                 }
                 setIsOpen(false);
               }}>
@@ -512,8 +518,8 @@ const Prizes = () => (
             className="w-full max-w-4xl bg-black/80 border-2 border-stranger-red/70 backdrop-blur-md p-8 md:p-12 flex flex-col items-center justify-center text-center glow-border-red hover:border-stranger-red transition-all duration-500 shadow-2xl rounded-lg"
           >
             <div className="trophy-icon text-5xl md:text-6xl mb-4">🏆</div>
-            <h3 className="title-effect text-2xl md:text-4xl mb-2" data-text="Prize Pool">Prize Pool</h3>
-            <p className="text-3xl md:text-5xl font-black text-stranger-red mb-4 neon-red">Up to ₹1,00,000</p>
+            <h3 className="title-effect text-2xl md:text-4xl mb-2" data-text="UPTO 1 LAKH">UPTO 1 LAKH</h3>
+            <p className="text-xl md:text-3xl font-black text-stranger-red mb-4 neon-red">50K TO WINNER</p>
             <div className="w-full h-[1px] bg-stranger-red/30 mb-6" />
             
             <p className="text-stranger-red/90 text-xs md:text-sm font-serif leading-relaxed max-w-3xl">

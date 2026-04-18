@@ -4,6 +4,7 @@ import { FaqItem, TrackItem, ScheduleItem } from './types';
 export const NAV_LINKS = [
   { name: 'Home', href: '#home' },
   { name: 'About Us', href: '#about' },
+  { name: 'Bounties', href: 'bounties.html' },
   { name: 'Problem Statements', href: 'problem-statements.html' },
   { name: 'Schedule', href: '#timeline' },
 ];
