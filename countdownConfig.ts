@@ -1,7 +1,7 @@
 // Edit these ISO date strings to change countdown behavior across the app.
 // Use an ISO 8601 date/time string (e.g. '2025-10-20T09:00:00' or with timezone '2025-10-20T09:00:00Z').
 export const START_DATE = '2026-04-18T10:00:00';
-export const END_DATE = '2026-04-19T11:39:15';
+export const END_DATE = '2026-04-19T23:00:00';
 
 export default {
   START_DATE,
