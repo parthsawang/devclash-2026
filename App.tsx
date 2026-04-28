@@ -155,6 +155,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeLink, setActiveLink] = useState('#home');
+  const [isDesktop, setIsDesktop] = useState(typeof window !== 'undefined' ? window.innerWidth >= 768 : true);
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
@@ -177,7 +178,14 @@ const Navbar = () => {
       if (current) setActiveLink(`#${current}`);
     };
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+
+    const handleResize = () => setIsDesktop(window.innerWidth >= 768);
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
 
   return (
@@ -205,7 +213,8 @@ const Navbar = () => {
             </div>
           </motion.div>
           
-          <div className="hidden !md:block">
+          {isDesktop && (
+            <div>
             <div className="flex items-center space-x-10">
               {NAV_LINKS.map((link) => (
                 <a
@@ -238,20 +247,22 @@ const Navbar = () => {
               ))}
 
             </div>
-          </div>
+          )}
 
-          <div className="md:hidden flex items-center gap-4">
+          {!isDesktop && (
+            <div className="flex items-center gap-4">
             <Radio size={20} className={`${isOpen ? 'text-stranger-red animate-pulse' : 'text-zinc-600'}`} />
             <button onClick={() => setIsOpen(!isOpen)} className="text-stranger-red p-2 hover:bg-stranger-red/10 transition-colors border border-stranger-red/20">
               {isOpen ? <X size={28} /> : <Menu size={28} />}
             </button>
           </div>
+          )}
         </div>
       </div>
 
       <AnimatePresence>
-        {isOpen && (
-          <motion.div initial={{ opacity: 0, clipPath: 'circle(0% at 90% 10%)' }} animate={{ opacity: 1, clipPath: 'circle(150% at 90% 10%)' }} exit={{ opacity: 0, clipPath: 'circle(0% at 90% 10%)' }} transition={{ duration: 0.6, ease: [0.19, 1, 0.22, 1] }} className="md:hidden fixed inset-0 bg-black/95 z-50 flex flex-col items-center justify-center space-y-12 overflow-hidden">
+        {isOpen && !isDesktop && (
+          <motion.div initial={{ opacity: 0, clipPath: 'circle(0% at 90% 10%)' }} animate={{ opacity: 1, clipPath: 'circle(150% at 90% 10%)' }} exit={{ opacity: 0, clipPath: 'circle(0% at 90% 10%)' }} transition={{ duration: 0.6, ease: [0.19, 1, 0.22, 1] }} className="fixed inset-0 bg-black/95 z-50 flex flex-col items-center justify-center space-y-12 overflow-hidden">
             <div className="absolute inset-0 opacity-10 pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
             <button onClick={() => setIsOpen(false)} className="absolute top-10 right-10 text-stranger-red border border-stranger-red/30 p-2"><X size={32}/></button>
             {NAV_LINKS.map((link, idx) => (
@@ -518,13 +529,23 @@ const Footer = () => (
   </footer>
 );
 
-const Timeline = () => (
+const Timeline = () => {
+  const [isDesktop, setIsDesktop] = useState(typeof window !== 'undefined' ? window.innerWidth >= 768 : true);
+  
+  useEffect(() => {
+    const handleResize = () => setIsDesktop(window.innerWidth >= 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  return (
   <section id="timeline" className="py-16 md:py-20 relative">
     <div className="max-w-7xl mx-auto px-6">                                                                                                                
       <SectionTitle subtitle>The Crawl</SectionTitle>
       
       {/* Mobile Timeline - Vertical */}
-      <div className="md:hidden">
+      {!isDesktop && (
+        <div>
         <div className="relative space-y-6">
           {/* Timeline events - Mobile */}
           {[
@@ -546,7 +567,8 @@ const Timeline = () => (
       </div>
       
       {/* Desktop Timeline - Clean Layout */}
-      <div className="hidden !md:block relative">
+      {isDesktop && (
+        <div className="relative">
         {/* Top row - 3 cards */}
         <div className="grid grid-cols-3 gap-6 mb-12">
           {/* Card 1: Registrations Open */}
@@ -600,7 +622,8 @@ const Timeline = () => (
       </div>
     </div>
   </section>
-);
+  );
+};
 
 export default function App() {
   useEffect(() => {
