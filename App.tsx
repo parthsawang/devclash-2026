@@ -205,7 +205,7 @@ const Navbar = () => {
             </div>
           </motion.div>
           
-          <div className="hidden md:block">
+          <div className="hidden !md:block">
             <div className="flex items-center space-x-10">
               {NAV_LINKS.map((link) => (
                 <a
@@ -546,7 +546,7 @@ const Timeline = () => (
       </div>
       
       {/* Desktop Timeline - Clean Layout */}
-      <div className="hidden md:block relative">
+      <div className="hidden !md:block relative">
         {/* Top row - 3 cards */}
         <div className="grid grid-cols-3 gap-6 mb-12">
           {/* Card 1: Registrations Open */}
