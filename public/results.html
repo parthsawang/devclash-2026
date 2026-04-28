@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="logo/fevicon.png"/>
+    <title>Results - DevClash 2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              stranger: {
+                red: '#E71D36',
+                neon: '#ff0000',
+                darkRed: '#8B0000',
+                dark: '#050505',
+                void: '#0a0a1a'
+              }
+            },
+            fontFamily: {
+              stranger: ['"ITC Benguiat"', 'bold serif with high x-height '],
+              serif: ['"ITC Benguiat"', 'serif'],
+              mono: ['"Share Tech Mono"', 'monospace'],
+            },
+          }
+        }
+      }
+    </script>
+    <link href="https://fonts.cdnfonts.com/css/itc-benguiat" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <style>
+      body {
+        background-color: #050505;
+        background-image: url('https://images.wallpapersden.com/image/download/the-mind-flayer-coming-hd-stranger-things_bWplbmmUmZqaraWkpJRmbmdlrWZlbWU.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        color: #e2e2e2;
+        font-family: 'ITC Benguiat', serif;
+        overflow-x: hidden;
+      }
+
+      body::after {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle at center, rgba(10, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.8) 100%);
+        z-index: -1;
+        pointer-events: none;
+      }
+
+      .stranger-title {
+        text-transform: uppercase;
+        letter-spacing: -0.02em;
+        line-height: 0.9;
+        color: transparent;
+        -webkit-text-stroke: 1.5px #e71d36;
+        position: relative;
+        display: inline-block;
+        transition: all 0.3s ease;
+        filter: drop-shadow(0 0 2px #e71d36)
+                drop-shadow(0 0 10px #8b0000)
+                drop-shadow(0 0 20px rgba(231, 29, 54, 0.2));
+      }
+
+      .stranger-title:hover {
+        filter: drop-shadow(0 0 5px #ff0000)
+                drop-shadow(0 0 15px #e71d36)
+                drop-shadow(0 0 30px #ff0000);
+        animation: text-flicker-intense 0.15s infinite alternate;
+      }
+
+      .stranger-title::before {
+        content: attr(data-text);
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        -webkit-text-stroke: 0;
+        color: rgba(231, 29, 54, 0.15);
+        filter: blur(15px);
+      }
+
+      @keyframes text-flicker-intense {
+        0% { opacity: 0.8; transform: skewX(-0.5deg); }
+        100% { opacity: 1; transform: skewX(0.5deg); }
+      }
+
+      @keyframes authentic-flicker {
+        0%, 18%, 22%, 25%, 53%, 57%, 100% {
+          filter: drop-shadow(0 0 8px #e71d36) drop-shadow(0 0 20px #8B0000);
+          opacity: 1;
+        }
+        1%, 19%, 23%, 54%, 58% {
+          filter: drop-shadow(0 0 2px #e71d36);
+          opacity: 0.7;
+        }
+      }
+
+      .animate-authentic-flicker {
+        animation: authentic-flicker 6s infinite;
+      }
+
+      .scanline {
+        width: 100%;
+        height: 100px;
+        z-index: 45;
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(255, 255, 255, 0.03) 50%, rgba(0, 0, 0, 0) 100%);
+        position: fixed;
+        bottom: 100%;
+        pointer-events: none;
+        animation: scanline 6s linear infinite;
+      }
+
+      @keyframes scanline {
+        0% { bottom: 100%; }
+        100% { bottom: -100px; }
+      }
+
+      .tv-static {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url('https://grainy-gradients.vercel.app/noise.svg');
+        opacity: 0.05;
+        pointer-events: none;
+        z-index: 50;
+      }
+
+      .title-effect {
+        font-family: 'ITC Benguiat', serif;
+        text-transform: uppercase;
+        letter-spacing: -0.02em;
+        line-height: 0.9;
+        color: transparent;
+        -webkit-text-stroke: 1.5px #e71d36;
+        position: relative;
+        display: inline-block;
+        transition: all 0.3s ease;
+        filter: drop-shadow(0 0 2px #e71d36) drop-shadow(0 0 10px #8b0000) drop-shadow(0 0 20px rgba(231, 29, 54, 0.2));
+        will-change: filter;
+        animation: authentic-flicker 6s infinite;
+      }
+
+      .title-effect::before {
+        content: attr(data-text);
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        -webkit-text-stroke: 0;
+        color: rgba(231, 29, 54, 0.15);
+        filter: blur(15px);
+      }
+
+      .snow {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 10;
+        overflow: hidden;
+      }
+
+      .snowflake {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: 50%;
+        animation: snowfall linear infinite;
+        box-shadow: 0 0 2px rgba(255, 255, 255, 0.5);
+        transform: translateY(-100vh);
+      }
+
+      @keyframes snowfall {
+        0% { transform: translateY(-100vh) rotate(0deg); opacity: 0; }
+        10% { opacity: 1; }
+        90% { opacity: 1; }
+        100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+      }
+
+      ::selection {
+        background: #e71d36;
+        color: white;
+      }
+
+      /* Winner card styles */
+      .winner-card {
+        position: relative;
+        overflow: hidden;
+        transition: all 0.4s ease;
+      }
+
+      .winner-card::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, rgba(231,29,54,0.05) 0%, transparent 50%, rgba(231,29,54,0.05) 100%);
+        pointer-events: none;
+      }
+
+      .winner-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 0 40px rgba(231, 29, 54, 0.3), inset 0 0 20px rgba(231, 29, 54, 0.05);
+      }
+
+      .winner-gold {
+        border-color: rgba(255, 215, 0, 0.5);
+        box-shadow: 0 0 30px rgba(255, 215, 0, 0.15), inset 0 0 15px rgba(255, 215, 0, 0.05);
+      }
+      .winner-gold:hover {
+        box-shadow: 0 0 50px rgba(255, 215, 0, 0.3), inset 0 0 25px rgba(255, 215, 0, 0.08);
+      }
+
+      .winner-silver {
+        border-color: rgba(192, 192, 192, 0.4);
+        box-shadow: 0 0 25px rgba(192, 192, 192, 0.12), inset 0 0 12px rgba(192, 192, 192, 0.04);
+      }
+      .winner-silver:hover {
+        box-shadow: 0 0 40px rgba(192, 192, 192, 0.25), inset 0 0 20px rgba(192, 192, 192, 0.06);
+      }
+
+      .winner-bronze {
+        border-color: rgba(205, 127, 50, 0.4);
+        box-shadow: 0 0 25px rgba(205, 127, 50, 0.12), inset 0 0 12px rgba(205, 127, 50, 0.04);
+      }
+      .winner-bronze:hover {
+        box-shadow: 0 0 40px rgba(205, 127, 50, 0.25), inset 0 0 20px rgba(205, 127, 50, 0.06);
+      }
+
+      @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      .animate-fade-in-up {
+        animation: fadeInUp 0.8s ease forwards;
+        opacity: 0;
+      }
+
+      @keyframes pulseGlow {
+        0%, 100% { box-shadow: 0 0 30px rgba(231,29,54,0.2), inset 0 0 20px rgba(231,29,54,0.05); }
+        50% { box-shadow: 0 0 50px rgba(231,29,54,0.35), inset 0 0 30px rgba(231,29,54,0.1); }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="tv-static"></div>
+    <div class="scanline"></div>
+
+    <!-- Navbar -->
+    <nav class="sticky top-0 w-full z-50 bg-black/95 backdrop-blur-2xl border-b border-stranger-red/20 py-4">
+      <div class="max-w-7xl mx-auto px-6 lg:px-10">
+        <div class="flex items-center justify-between h-12 relative">
+          <div class="flex-shrink-0 flex items-center gap-4 group">
+            <div class="relative">
+              <img src="logo/devkraft1.png" alt="DevKraft Logo" class="h-10 md:h-12 object-contain" />
+              <div class="absolute -inset-2 bg-stranger-red/5 blur-xl pointer-events-none"></div>
+            </div>
+          </div>
+
+          <div class="hidden md:block">
+            <div class="flex items-center space-x-10">
+              <a href="/" class="font-serif text-[11px] font-bold tracking-[0.3em] uppercase transition-all duration-500 text-zinc-500 hover:text-zinc-200">
+                <span class="relative z-10">Back to Home</span>
+              </a>
+              <a href="results.html" class="font-serif text-[11px] font-bold tracking-[0.3em] uppercase transition-all duration-500 text-white">
+                <span class="relative z-10">Results</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="md:hidden flex items-center gap-4">
+            <a href="/" class="text-zinc-500 hover:text-zinc-200 font-serif text-[11px] font-bold tracking-[0.3em] uppercase transition-all duration-500 px-4 py-2 border border-stranger-red/20 rounded hover:bg-stranger-red/10">Home</a>
+            <a href="results.html" class="text-white font-serif text-[11px] font-bold tracking-[0.3em] uppercase transition-all duration-500 px-4 py-2 border border-stranger-red/20 rounded hover:bg-stranger-red/10">Results</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Results Content -->
+    <section class="py-16 md:py-28 relative min-h-screen">
+      <div class="max-w-6xl mx-auto px-4 md:px-6">
+
+        <!-- Page Title -->
+        <div class="text-center mb-16 md:mb-24">
+          <h1 class="title-effect text-4xl md:text-7xl mb-4" data-text="Results">Results</h1>
+          <p class="text-zinc-400 text-lg font-serif italic mt-6">The champions have emerged from the Upside Down</p>
+          <div class="w-40 h-[2px] bg-gradient-to-r from-transparent via-stranger-red to-transparent mx-auto mt-6 shadow-[0_0_20px_#ff0000]"></div>
+        </div>
+
+        <!-- ═══════════════════════════════════════════ -->
+        <!--         DEVCLASH OVERALL WINNERS            -->
+        <!-- ═══════════════════════════════════════════ -->
+        <div class="mb-20 md:mb-28">
+          <div class="text-center mb-12">
+            <h2 class="title-effect text-3xl md:text-5xl mb-3" data-text="DevClash Winners">DevClash Winners</h2>
+            <p class="text-zinc-500 text-sm font-mono tracking-[0.3em] uppercase mt-4">Overall Champions</p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+
+            <!-- 🥇 Winner -->
+            <div class="winner-card winner-gold bg-black/70 border-2 backdrop-blur-md p-8 rounded-xl text-center animate-fade-in-up" style="animation-delay: 0.1s;">
+              <div class="text-5xl mb-4">🏆</div>
+              <div class="text-[10px] font-mono text-yellow-400/80 tracking-[0.4em] uppercase mb-2">Winner</div>
+              <h3 class="text-xl md:text-2xl font-bold text-white mb-2 font-serif uppercase tracking-wider">Quantum Paradox</h3>
+              <div class="w-16 h-[1px] bg-yellow-500/40 mx-auto my-3"></div>
+              <p class="text-yellow-400/70 text-sm font-mono tracking-wider">HireX Track</p>
+            </div>
+
+            <!-- 🥈 1st Runner Up -->
+            <div class="winner-card winner-silver bg-black/70 border-2 backdrop-blur-md p-8 rounded-xl text-center animate-fade-in-up" style="animation-delay: 0.3s;">
+              <div class="text-5xl mb-4">🥈</div>
+              <div class="text-[10px] font-mono text-gray-300/80 tracking-[0.4em] uppercase mb-2">1st Runner Up</div>
+              <h3 class="text-xl md:text-2xl font-bold text-white mb-2 font-serif uppercase tracking-wider">AgentPit</h3>
+              <div class="w-16 h-[1px] bg-gray-400/40 mx-auto my-3"></div>
+              <p class="text-gray-300/70 text-sm font-mono tracking-wider">Web3 Track</p>
+            </div>
+
+            <!-- 🥉 2nd Runner Up -->
+            <div class="winner-card winner-bronze bg-black/70 border-2 backdrop-blur-md p-8 rounded-xl text-center animate-fade-in-up" style="animation-delay: 0.5s;">
+              <div class="text-5xl mb-4">🥉</div>
+              <div class="text-[10px] font-mono text-orange-400/80 tracking-[0.4em] uppercase mb-2">2nd Runner Up</div>
+              <h3 class="text-xl md:text-2xl font-bold text-white mb-2 font-serif uppercase tracking-wider">Team Orion</h3>
+              <div class="w-16 h-[1px] bg-orange-500/40 mx-auto my-3"></div>
+              <p class="text-orange-400/70 text-sm font-mono tracking-wider">Open Track</p>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════════ -->
+        <!--              TRACK RESULTS                  -->
+        <!-- ═══════════════════════════════════════════ -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-14 max-w-5xl mx-auto">
+
+          <!-- ── OPEN TRACK ── -->
+          <div class="animate-fade-in-up" style="animation-delay: 0.7s;">
+            <div class="text-center mb-8">
+              <h2 class="title-effect text-2xl md:text-4xl mb-2" data-text="Open Track">Open Track</h2>
+              <div class="w-24 h-[1px] bg-gradient-to-r from-transparent via-stranger-red to-transparent mx-auto mt-4 shadow-[0_0_10px_rgba(231,29,54,0.4)]"></div>
+            </div>
+
+            <div class="space-y-4">
+              <!-- Winner -->
+              <div class="winner-card winner-gold bg-black/70 border-2 backdrop-blur-md p-6 rounded-xl flex items-center gap-5">
+                <div class="text-4xl flex-shrink-0">🏆</div>
+                <div>
+                  <div class="text-[10px] font-mono text-yellow-400/80 tracking-[0.4em] uppercase mb-1">Winner</div>
+                  <h4 class="text-lg font-bold text-white font-serif uppercase tracking-wider">Quantum Paradox</h4>
+                </div>
+              </div>
+
+              <!-- 1st Runner Up -->
+              <div class="winner-card winner-silver bg-black/70 border-2 backdrop-blur-md p-6 rounded-xl flex items-center gap-5">
+                <div class="text-4xl flex-shrink-0">🥈</div>
+                <div>
+                  <div class="text-[10px] font-mono text-gray-300/80 tracking-[0.4em] uppercase mb-1">1st Runner Up</div>
+                  <h4 class="text-lg font-bold text-white font-serif uppercase tracking-wider">Team Orion</h4>
+                </div>
+              </div>
+
+              <!-- 2nd Runner Up -->
+              <div class="winner-card winner-bronze bg-black/70 border-2 backdrop-blur-md p-6 rounded-xl flex items-center gap-5">
+                <div class="text-4xl flex-shrink-0">🥉</div>
+                <div>
+                  <div class="text-[10px] font-mono text-orange-400/80 tracking-[0.4em] uppercase mb-1">2nd Runner Up</div>
+                  <h4 class="text-lg font-bold text-white font-serif uppercase tracking-wider">Syntax Cartel</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── WEB3 TRACK ── -->
+          <div class="animate-fade-in-up" style="animation-delay: 0.9s;">
+            <div class="text-center mb-8">
+              <h2 class="title-effect text-2xl md:text-4xl mb-2" data-text="Web3 Track">Web3 Track</h2>
+              <div class="w-24 h-[1px] bg-gradient-to-r from-transparent via-stranger-red to-transparent mx-auto mt-4 shadow-[0_0_10px_rgba(231,29,54,0.4)]"></div>
+            </div>
+
+            <div class="space-y-4">
+              <!-- Winner -->
+              <div class="winner-card winner-gold bg-black/70 border-2 backdrop-blur-md p-6 rounded-xl flex items-center gap-5">
+                <div class="text-4xl flex-shrink-0">🏆</div>
+                <div>
+                  <div class="text-[10px] font-mono text-yellow-400/80 tracking-[0.4em] uppercase mb-1">Winner</div>
+                  <h4 class="text-lg font-bold text-white font-serif uppercase tracking-wider">AgentPit</h4>
+                </div>
+              </div>
+
+              <!-- 1st Runner Up -->
+              <div class="winner-card winner-silver bg-black/70 border-2 backdrop-blur-md p-6 rounded-xl flex items-center gap-5">
+                <div class="text-4xl flex-shrink-0">🥈</div>
+                <div>
+                  <div class="text-[10px] font-mono text-gray-300/80 tracking-[0.4em] uppercase mb-1">1st Runner Up</div>
+                  <h4 class="text-lg font-bold text-white font-serif uppercase tracking-wider">Team 7x7=49</h4>
+                </div>
+              </div>
+
+              <!-- 2nd Runner Up -->
+              <div class="winner-card winner-bronze bg-black/70 border-2 backdrop-blur-md p-6 rounded-xl flex items-center gap-5">
+                <div class="text-4xl flex-shrink-0">🥉</div>
+                <div>
+                  <div class="text-[10px] font-mono text-orange-400/80 tracking-[0.4em] uppercase mb-1">2nd Runner Up</div>
+                  <h4 class="text-lg font-bold text-white font-serif uppercase tracking-wider">Runtime Terror</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Congrats Footer -->
+        <div class="text-center mt-20 md:mt-28 animate-fade-in-up" style="animation-delay: 1.1s;">
+          <div class="bg-black/60 border border-stranger-red/30 backdrop-blur-md p-10 md:p-14 rounded-xl max-w-2xl mx-auto" style="animation: pulseGlow 4s ease-in-out infinite;">
+            <div class="text-4xl mb-4">🎉</div>
+            <p class="text-zinc-300 text-lg font-serif italic leading-relaxed">
+              Congratulations to all the winners and participants! <br/>
+              You have conquered the Upside Down.
+            </p>
+            <div class="w-24 h-[1px] bg-gradient-to-r from-transparent via-stranger-red/50 to-transparent mx-auto mt-6"></div>
+            <p class="text-zinc-500 text-xs font-mono tracking-[0.3em] uppercase mt-4">DevClash 2026</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <script>
+      // Snow effect
+      function createSnowflakes() {
+        const snowContainer = document.createElement('div');
+        snowContainer.className = 'snow';
+        document.body.appendChild(snowContainer);
+
+        for (let i = 0; i < 50; i++) {
+          const snowflake = document.createElement('div');
+          snowflake.className = 'snowflake';
+          snowflake.style.left = Math.random() * 100 + '%';
+          snowflake.style.animationDuration = (Math.random() * 10 + 10) + 's';
+          snowflake.style.animationDelay = Math.random() * 10 + 's';
+          snowContainer.appendChild(snowflake);
+        }
+      }
+
+      // Intersection observer for animations
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.animationPlayState = 'running';
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.addEventListener('DOMContentLoaded', () => {
+        createSnowflakes();
+        document.body.classList.add('active-spores');
+        document.querySelectorAll('.animate-fade-in-up').forEach(el => {
+          observer.observe(el);
+        });
+      });
+    </script>
+  </body>
+</html>

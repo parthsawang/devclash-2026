@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="logo/fevicon.png"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Problem Statements - DevClash 2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              stranger: {
+                red: '#E71D36',
+                neon: '#ff0000',
+                darkRed: '#8B0000',
+                dark: '#050505',
+                void: '#0a0a1a'
+              }
+            },
+            fontFamily: {
+              stranger: ['"ITC Benguiat"', 'bold serif with high x-height '],
+              serif: ['"ITC Benguiat"', 'serif'],
+              mono: ['"Share Tech Mono"', 'monospace'],
+            },
+          }
+        }
+      }
+    </script>
+    <link href="https://fonts.cdnfonts.com/css/itc-benguiat" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <style>
+      body {
+        background-color: #050505;
+        background-image: url('https://images.wallpapersden.com/image/download/the-mind-flayer-coming-hd-stranger-things_bWplbmmUmZqaraWkpJRmbmdlrWZlbWU.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        color: #e2e2e2;
+        font-family: 'ITC Benguiat', serif;
+        overflow-x: hidden;
+      }
+
+      /* Base dark overlay for the whole site */
+      body::after {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle at center, rgba(10, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.8) 100%);
+        z-index: -1;
+        pointer-events: none;
+      }
+
+      /* Enhanced Stranger Things Glow & Flicker */
+      .stranger-title {
+        text-transform: uppercase;
+        letter-spacing: -0.02em;
+        line-height: 0.9;
+        color: transparent;
+        -webkit-text-stroke: 1.5px #e71d36;
+        position: relative;
+        display: inline-block;
+        transition: all 0.3s ease;
+        filter: drop-shadow(0 0 2px #e71d36)
+                drop-shadow(0 0 10px #8b0000)
+                drop-shadow(0 0 20px rgba(231, 29, 54, 0.2));
+      }
+
+      .stranger-title:hover {
+        filter: drop-shadow(0 0 5px #ff0000)
+                drop-shadow(0 0 15px #e71d36)
+                drop-shadow(0 0 30px #ff0000);
+        animation: text-flicker-intense 0.15s infinite alternate;
+      }
+
+      .stranger-title::before {
+        content: attr(data-text);
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        -webkit-text-stroke: 0;
+        color: rgba(231, 29, 54, 0.15);
+        filter: blur(15px);
+      }
+
+      @keyframes text-flicker-intense {
+        0% { opacity: 0.8; transform: skewX(-0.5deg); }
+        100% { opacity: 1; transform: skewX(0.5deg); }
+      }
+
+      @keyframes authentic-flicker {
+        0%, 18%, 22%, 25%, 53%, 57%, 100% {
+          filter: drop-shadow(0 0 8px #e71d36) drop-shadow(0 0 20px #8B0000);
+          opacity: 1;
+        }
+        1%, 19%, 23%, 54%, 58% {
+          filter: drop-shadow(0 0 2px #e71d36);
+          opacity: 0.7;
+        }
+      }
+
+      .animate-authentic-flicker {
+        animation: authentic-flicker 6s infinite;
+      }
+
+      .scanline {
+        width: 100%;
+        height: 100px;
+        z-index: 45;
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(255, 255, 255, 0.03) 50%, rgba(0, 0, 0, 0) 100%);
+        position: fixed;
+        bottom: 100%;
+        pointer-events: none;
+        animation: scanline 6s linear infinite;
+      }
+
+      @keyframes scanline {
+        0% { bottom: 100%; }
+        100% { bottom: -100px; }
+      }
+
+      .tv-static {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url('https://grainy-gradients.vercel.app/noise.svg');
+        opacity: 0.05;
+        pointer-events: none;
+        z-index: 50;
+      }
+
+      .spores {
+        position: absolute;
+        inset: 0;
+        background-image: radial-gradient(circle, #fff 1px, transparent 1px);
+        background-size: 50px 50px;
+        opacity: 0;
+        transition: opacity 1.5s ease;
+        pointer-events: none;
+      }
+
+      .active-spores .spores {
+        opacity: 0.2;
+        animation: spores-float 30s linear infinite;
+      }
+
+      @keyframes spores-float {
+        from { background-position: 0 0; }
+        to { background-position: 150px 300px; }
+      }
+
+      .bg-upside-down {
+        background: radial-gradient(circle at center, #1a0b2e 0%, #050505 100%);
+        border-top: 2px solid rgba(231, 29, 54, 0.2);
+        border-bottom: 2px solid rgba(231, 29, 54, 0.2);
+        box-shadow: inset 0 0 100px rgba(0,0,0,1);
+      }
+
+      /* Title Effect for consistent styling */
+      .title-effect {
+        font-family: 'ITC Benguiat', serif;
+        text-transform: uppercase;
+        letter-spacing: -0.02em;
+        line-height: 0.9;
+        color: transparent;
+        -webkit-text-stroke: 1.5px #e71d36;
+        position: relative;
+        display: inline-block;
+        transition: all 0.3s ease;
+        filter: drop-shadow(0 0 2px #e71d36) drop-shadow(0 0 10px #8b0000) drop-shadow(0 0 20px rgba(231, 29, 54, 0.2));
+        will-change: filter;
+        animation: authentic-flicker 6s infinite;
+      }
+
+      .title-effect::before {
+        content: attr(data-text);
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        -webkit-text-stroke: 0;
+        color: rgba(231, 29, 54, 0.15);
+        filter: blur(15px);
+      }
+
+      /* Snow Effect */
+      .snow {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 10;
+        overflow: hidden;
+      }
+
+      .snowflake {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: 50%;
+        animation: snowfall linear infinite;
+        box-shadow: 0 0 2px rgba(255, 255, 255, 0.5);
+        transform: translateY(-100vh);
+      }
+
+      @keyframes snowfall {
+        0% {
+          transform: translateY(-100vh) rotate(0deg);
+          opacity: 0;
+        }
+        10% {
+          opacity: 1;
+        }
+        90% {
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(100vh) rotate(360deg);
+          opacity: 0;
+        }
+      }
+
+      ::selection {
+        background: #e71d36;
+        color: white;
+      }
+
+      .pdf-viewer-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.92);
+        backdrop-filter: blur(18px);
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1.5rem;
+      }
+
+      .pdf-viewer-modal {
+        width: min(1200px, 100%);
+        height: min(90vh, 100%);
+        background: rgba(10, 10, 10, 0.96);
+        border: 1px solid rgba(231, 29, 54, 0.35);
+        border-radius: 1rem;
+        box-shadow: 0 0 80px rgba(231, 29, 54, 0.75);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .pdf-viewer-close {
+        align-self: flex-end;
+        margin: 1rem;
+        padding: 0.75rem 1.2rem;
+        background: rgba(231, 29, 54, 0.95);
+        border: none;
+        border-radius: 9999px;
+        color: white;
+        font-family: 'ITC Benguiat', serif;
+        font-weight: bold;
+        cursor: pointer;
+        transition: transform 0.2s ease, background 0.2s ease;
+      }
+
+      .pdf-viewer-close:hover {
+        transform: scale(1.03);
+        background: #ff385d;
+      }
+
+      .pdf-viewer-frame {
+        flex: 1;
+        border: none;
+        width: 100%;
+        min-height: 0;
+      }
+
+      body, #track-selection, .pdf-viewer-overlay, .pdf-viewer-modal, .view-pdf-button, .title-effect, .text-zinc-400, .nav-link-glitch, p, h1, h2, .group {
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      body {
+        -webkit-touch-callout: none;
+      }
+
+      .view-pdf-button {
+        margin-top: 1.5rem;
+        padding: 1rem 1.5rem;
+        border-radius: 9999px;
+        background: linear-gradient(135deg, rgba(251, 191, 36, 0.95), rgba(245, 158, 11, 0.95));
+        color: #050505;
+        font-family: 'ITC Benguiat', serif;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .view-pdf-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 15px 35px rgba(245, 158, 11, 0.25);
+      }
+
+      .download-link {
+        margin-top: 1rem;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.85rem 1.2rem;
+        border-radius: 9999px;
+        border: 1px solid rgba(255,255,255,0.15);
+        background: rgba(255,255,255,0.08);
+        color: #f8fafc;
+        text-decoration: none;
+        font-family: 'ITC Benguiat', serif;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+      }
+
+      .download-link:hover {
+        transform: translateY(-1px);
+        background: rgba(255,255,255,0.12);
+        border-color: rgba(231,29,54,0.7);
+      }
+
+      .screenshot-warning-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 1100;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.94);
+        backdrop-filter: blur(20px);
+        padding: 1.5rem;
+      }
+
+      .screenshot-warning-overlay.hidden {
+        display: none;
+      }
+
+      .screenshot-warning-box {
+        width: min(680px, 100%);
+        background: rgba(10, 10, 10, 0.98);
+        border: 1px solid rgba(231, 29, 54, 0.35);
+        border-radius: 1rem;
+        padding: 2rem;
+        text-align: center;
+        box-shadow: 0 0 80px rgba(231, 29, 54, 0.35);
+      }
+
+      .screenshot-warning-box h3 {
+        margin-bottom: 1rem;
+        font-size: 2rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+      }
+
+      .screenshot-warning-box p {
+        color: #ddd;
+        line-height: 1.8;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="tv-static"></div>
+    <div class="scanline"></div>
+
+    <!-- Simple Navbar -->
+    <nav class="sticky top-0 w-full z-50 bg-black/95 backdrop-blur-2xl border-b border-stranger-red/20 py-4">
+      <div class="max-w-7xl mx-auto px-6 lg:px-10">
+        <div class="flex items-center justify-between h-12 relative">
+          <div class="flex-shrink-0 flex items-center gap-4 group">
+            <div class="relative">
+              <img src="logo/devkraft1.png" alt="DevKraft Logo" class="h-10 md:h-12 object-contain" />
+              <div class="absolute -inset-2 bg-stranger-red/5 blur-xl pointer-events-none"></div>
+            </div>
+          </div>
+
+          <div class="hidden md:block">
+            <div class="flex items-center space-x-10">
+              <a href="/" class="font-serif text-[11px] font-bold tracking-[0.3em] uppercase transition-all duration-500 nav-link-glitch group text-zinc-500 hover:text-zinc-200">
+                <span class="relative z-10">Back to Home</span>
+              </a>
+              <a href="problem-statements.html" class="font-serif text-[11px] font-bold tracking-[0.3em] uppercase transition-all duration-500 nav-link-glitch group text-zinc-500 hover:text-zinc-200">
+                <span class="relative z-10">Problem</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="md:hidden flex items-center gap-4">
+            <a href="/" class="text-zinc-500 hover:text-zinc-200 font-serif text-[11px] font-bold tracking-[0.3em] uppercase transition-all duration-500 px-4 py-2 border border-stranger-red/20 rounded hover:bg-stranger-red/10">Home</a>
+            <a href="problem-statements.html" class="text-zinc-500 hover:text-zinc-200 font-serif text-[11px] font-bold tracking-[0.3em] uppercase transition-all duration-500 px-4 py-2 border border-stranger-red/20 rounded hover:bg-stranger-red/10">Problem</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Problem Statements Content -->
+    <section class="py-20 relative min-h-screen" id="main-section">
+      <div class="max-w-7xl mx-auto px-4 md:px-6">
+        <div class="text-center mb-16 relative z-10">
+          <h1 class="title-effect text-4xl md:text-6xl mb-4" data-text="Problem Statements">Problem Statements</h1>
+          <p class="text-zinc-300 text-lg font-serif italic" id="sub-heading">Choose Your Path - Enter the Void</p>
+        </div>
+
+        <!-- Track Selection Cards -->
+        <div id="track-selection" class="flex flex-col md:flex-row justify-center items-stretch gap-8 relative z-10 transition-all duration-500">
+          
+          <!-- Open Track Card -->
+          <div data-pdf="/open_track_ps.pdf" class="group cursor-pointer w-full md:w-1/3 max-w-md bg-black/40 border border-stranger-red/20 hover:border-stranger-red/80 p-10 backdrop-blur-md rounded-xl transition-all duration-500 hover:shadow-[0_0_40px_rgba(231,29,54,0.4)] hover:-translate-y-2 flex flex-col items-center justify-center min-h-[300px] no-underline">
+            <h2 class="title-effect text-3xl md:text-5xl mb-4 group-hover:scale-110 transition-transform duration-300" data-text="OPEN TRACK">OPEN TRACK</h2>
+            <p class="text-zinc-400 font-serif italic text-center mt-4 group-hover:text-zinc-200 transition-colors">View Problem Statements (PDF)</p>
+            <a href="/open_track_ps.pdf" download="Open_Track_Problem_Statements.pdf" class="download-link">Download PDF</a>
+          </div>
+
+          <!-- Web3 Track Card -->
+          <div data-pdf="/WEB3_TRACK_PS.pdf" class="group cursor-pointer w-full md:w-1/3 max-w-md bg-black/40 border border-purple-500/20 hover:border-purple-500/80 p-10 backdrop-blur-md rounded-xl transition-all duration-500 hover:shadow-[0_0_40px_rgba(168,85,247,0.4)] hover:-translate-y-2 flex flex-col items-center justify-center min-h-[300px] no-underline">
+            <h2 class="font-serif text-3xl md:text-5xl mb-4 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-purple-600 font-bold uppercase tracking-widest group-hover:scale-110 transition-transform duration-300 filter drop-shadow-[0_0_10px_rgba(168,85,247,0.5)]">WEB3 TRACK</h2>
+            <p class="text-zinc-400 font-serif italic text-center mt-4 group-hover:text-zinc-200 transition-colors">View Problem Statements (PDF)</p>
+            <a href="/WEB3_TRACK_PS.pdf" download="Web3_Track_Problem_Statements.pdf" class="download-link">Download PDF</a>
+          </div>
+
+          <!-- HireX Track Card -->
+          <div class="group w-full md:w-1/3 max-w-md bg-black/40 border border-amber-500/20 hover:border-amber-500/80 p-10 backdrop-blur-md rounded-xl transition-all duration-500 hover:shadow-[0_0_40px_rgba(251,191,36,0.4)] hover:-translate-y-2 flex flex-col items-center justify-center min-h-[300px]">
+            <h2 class="font-serif text-3xl md:text-5xl mb-4 text-amber-300 font-bold uppercase tracking-widest group-hover:scale-110 transition-transform duration-300 filter drop-shadow-[0_0_10px_rgba(251,191,36,0.5)]">HIREX TRACK</h2>
+            <p class="text-zinc-400 font-serif italic text-center mt-4 group-hover:text-zinc-200 transition-colors">View Problem Statements (PDF)</p>
+            <button id="view-hirex-pdf" type="button" data-pdf="/hirex.pdf" class="view-pdf-button">View PDF</button>
+            <a href="/hirex.pdf" download="HireX_Track_Problem_Statements.pdf" class="download-link">Download PDF</a>
+          </div>
+        </div>
+      </div>
+
+      <div id="hirex-pdf-overlay" class="pdf-viewer-overlay hidden" aria-hidden="true" onclick="if (event.target === this) closePdf()">
+        <div class="pdf-viewer-modal">
+          <button id="hirex-pdf-close" class="pdf-viewer-close" type="button">Close</button>
+          <iframe id="hirex-pdf-frame" class="pdf-viewer-frame" src="" title="HireX Problem Statement" oncontextmenu="return false;"></iframe>
+        </div>
+      </div>
+
+      <div id="screenshot-warning" class="screenshot-warning-overlay hidden" aria-hidden="true">
+        <div class="screenshot-warning-box">
+          <h3>Screenshot Not Allowed</h3>
+          <p>For security reasons, screen capture is disabled while viewing the problem statements. Please close this viewer and continue without capturing the page.</p>
+          <button id="screenshot-warning-close" class="pdf-viewer-close mt-6" type="button">Close</button>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      // Problem statement viewer
+      function openPdf(pdfUrl) {
+        const overlay = document.getElementById('hirex-pdf-overlay');
+        const frame = document.getElementById('hirex-pdf-frame');
+        if (!overlay || !frame) return;
+        frame.src = `${pdfUrl}#toolbar=0&navpanes=0&scrollbar=0`;
+        overlay.classList.remove('hidden');
+        overlay.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closePdf() {
+        const overlay = document.getElementById('hirex-pdf-overlay');
+        const frame = document.getElementById('hirex-pdf-frame');
+        if (!overlay || !frame) return;
+        overlay.classList.add('hidden');
+        overlay.setAttribute('aria-hidden', 'true');
+        frame.src = '';
+        document.body.style.overflow = '';
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener('contextmenu', (event) => event.preventDefault());
+
+        const pdfButtons = document.querySelectorAll('[data-pdf]');
+        pdfButtons.forEach((button) => {
+          button.addEventListener('click', () => {
+            const pdfUrl = button.getAttribute('data-pdf');
+            if (pdfUrl) openPdf(pdfUrl);
+          });
+        });
+
+        const closeButton = document.getElementById('hirex-pdf-close');
+        if (closeButton) closeButton.addEventListener('click', closePdf);
+
+        const warningClose = document.getElementById('screenshot-warning-close');
+        if (warningClose) warningClose.addEventListener('click', hideScreenshotWarning);
+
+        document.addEventListener('keydown', (event) => {
+          const key = event.key ? event.key.toLowerCase() : '';
+          if (key === 'printscreen' || key === 'print' || (event.ctrlKey && event.shiftKey && key === 's')) {
+            event.preventDefault();
+            hideScreenshotWarning();
+            showScreenshotWarning();
+          }
+        });
+
+        document.addEventListener('visibilitychange', () => {
+          if (document.hidden) {
+            closePdf();
+            showScreenshotWarning();
+          }
+        });
+      });
+
+      function showScreenshotWarning() {
+        const warning = document.getElementById('screenshot-warning');
+        if (!warning) return;
+        warning.classList.remove('hidden');
+        warning.setAttribute('aria-hidden', 'false');
+      }
+
+      function hideScreenshotWarning() {
+        const warning = document.getElementById('screenshot-warning');
+        if (!warning) return;
+        warning.classList.add('hidden');
+        warning.setAttribute('aria-hidden', 'true');
+      }
+
+      // Snow effect
+      function createSnowflakes() {
+        const snow = document.createElement('div');
+        snow.className = 'snow';
+        document.body.appendChild(snow);
+        for (let i = 0; i < 50; i++) {
+          const snowflake = document.createElement('div');
+          snowflake.className = 'snowflake';
+          snowflake.style.left = Math.random() * 100 + '%';
+          snowflake.style.animationDelay = Math.random() * 10 + 's';
+          snowflake.style.animationDuration = (Math.random() * 10 + 10) + 's';
+          snow.appendChild(snowflake);
+        }
+      }
+      createSnowflakes();
+    </script>
+  </body>
+</html>
