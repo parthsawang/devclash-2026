@@ -104,42 +104,50 @@ const SectionTitle: React.FC<{ children: React.ReactNode; subtitle?: boolean; up
 
 const ResultsDeclared = () => {
   return (
-    <div className="flex flex-col items-center justify-center my-8">
-      <motion.div
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1, type: 'spring', stiffness: 80 }}
-        className="relative inline-flex flex-col items-center gap-4 rounded-[2rem] border-2 border-red-500/40 bg-black/70 px-10 py-8 md:px-16 md:py-10 shadow-[0_0_60px_rgba(239,68,68,0.25),inset_0_0_30px_rgba(239,68,68,0.08)] backdrop-blur-xl"
-      >
+    <a
+      href={import.meta.env.BASE_URL + 'results.html'}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="block cursor-pointer group"
+    >
+      <div className="flex flex-col items-center justify-center my-8">
         <motion.div
-          animate={{ opacity: [0.6, 1, 0.6] }}
-          transition={{ repeat: Infinity, duration: 3, ease: 'easeInOut' }}
-          className="absolute -inset-1 rounded-[2rem] border border-stranger-red/20 pointer-events-none"
-        />
-        <span className="text-xs md:text-sm text-red-300 uppercase font-mono tracking-[0.5em] font-bold">
-          DevClash 2026
-        </span>
-        <h2
-          className="title-effect text-4xl md:text-6xl lg:text-7xl"
-          data-text="Results Declared"
-          style={{ textShadow: '0 0 30px rgba(239,68,68,0.7), 0 0 60px rgba(255,20,20,0.3)' }}
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          whileHover={{ scale: 1.03 }}
+          transition={{ duration: 1, type: 'spring', stiffness: 80 }}
+          className="relative inline-flex flex-col items-center gap-4 rounded-[2rem] border-2 border-red-500/40 bg-black/70 px-10 py-8 md:px-16 md:py-10 shadow-[0_0_60px_rgba(239,68,68,0.25),inset_0_0_30px_rgba(239,68,68,0.08)] backdrop-blur-xl group-hover:shadow-[0_0_80px_rgba(239,68,68,0.4),inset_0_0_40px_rgba(239,68,68,0.12)] group-hover:border-red-500/60 transition-all duration-300"
         >
-          Results Declared
-        </h2>
-        <motion.div
-          initial={{ width: 0 }}
-          animate={{ width: '80%' }}
-          transition={{ duration: 1.5, delay: 0.5 }}
-          className="h-[2px] bg-gradient-to-r from-transparent via-stranger-red to-transparent shadow-[0_0_20px_#ff0000]"
-        />
-        <span
-          className="text-red-400/80 font-mono text-xs md:text-sm tracking-[0.3em] uppercase"
-          style={{ textShadow: '0 0 10px rgba(239,68,68,0.5)' }}
-        >
-          The truth has emerged from the void
-        </span>
-      </motion.div>
-    </div>
+          <motion.div
+            animate={{ opacity: [0.6, 1, 0.6] }}
+            transition={{ repeat: Infinity, duration: 3, ease: 'easeInOut' }}
+            className="absolute -inset-1 rounded-[2rem] border border-stranger-red/20 pointer-events-none"
+          />
+          <span className="text-xs md:text-sm text-red-300 uppercase font-mono tracking-[0.5em] font-bold">
+            DevClash 2026
+          </span>
+          <h2
+            className="title-effect text-4xl md:text-6xl lg:text-7xl"
+            data-text="Results Declared"
+            style={{ textShadow: '0 0 30px rgba(239,68,68,0.7), 0 0 60px rgba(255,20,20,0.3)' }}
+          >
+            Results Declared
+          </h2>
+          <motion.div
+            initial={{ width: 0 }}
+            animate={{ width: '80%' }}
+            transition={{ duration: 1.5, delay: 0.5 }}
+            className="h-[2px] bg-gradient-to-r from-transparent via-stranger-red to-transparent shadow-[0_0_20px_#ff0000]"
+          />
+          <span
+            className="text-red-400/80 font-mono text-xs md:text-sm tracking-[0.3em] uppercase group-hover:text-red-300 transition-colors duration-300"
+            style={{ textShadow: '0 0 10px rgba(239,68,68,0.5)' }}
+          >
+            The truth has emerged from the void
+          </span>
+        </motion.div>
+      </div>
+    </a>
   );
 };
 
