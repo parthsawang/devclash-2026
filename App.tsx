@@ -181,7 +181,16 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className={`sticky top-0 w-full z-50 transition-all duration-700 ${scrolled ? 'bg-black/95 backdrop-blur-2xl border-b border-stranger-red/20 py-1' : 'bg-transparent py-4'}`}>
+    <nav 
+      className="sticky top-0 w-full z-50 transition-all duration-700"
+      style={{
+        backgroundColor: scrolled ? 'rgba(0, 0, 0, 0.95)' : 'transparent',
+        backdropFilter: scrolled ? 'blur(40px)' : 'none',
+        borderBottom: scrolled ? '1px solid rgba(231, 29, 54, 0.2)' : '1px solid transparent',
+        paddingTop: scrolled ? '0.25rem' : '1rem',
+        paddingBottom: scrolled ? '0.25rem' : '1rem'
+      }}
+    >
       <motion.div
         className="absolute bottom-0 left-0 h-[3px] bg-stranger-red origin-left z-50 shadow-[0_0_10px_#ff0033]"
         style={{ scaleX }}
