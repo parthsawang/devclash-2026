@@ -22,7 +22,7 @@ An immersive, high-performance event website built to deliver a seamless registr
 ![Vite](https://img.shields.io/badge/Vite-7-646CFF?logo=vite&logoColor=white)
 ![TailwindCSS](https://img.shields.io/badge/TailwindCSS-4-06B6D4?logo=tailwindcss&logoColor=white)
 ![Node.js](https://img.shields.io/badge/Node.js-22-339933?logo=node.js&logoColor=white)
-![MongoDB](https://img.shields.io/badge/MongoDB-8-47A248?logo=mongodb&logoColor=white)
+
 ![Express](https://img.shields.io/badge/Express.js-000000?logo=express&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-blue)
 
@@ -70,9 +70,6 @@ Built with performance and user experience in mind, the website combines modern 
 - Node.js
 - Express.js
 
-## Database
-
-- MongoDB
 
 ## Deployment
 
